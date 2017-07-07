@@ -8,14 +8,14 @@ var app = express();
 app.use(express.static('express_public'));
 
 // 404 request respond page
-app.use(function(req, res, next) {
-  res.status(404).send('Sorry cant find that!');
-});
+// app.use(function(req, res, next) {
+//   res.status(404).send('sorry cant find that!');
+// });
 
-// This handling all errors
+// this handling all errors
 app.use(function(err, req, res, next) {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.status(500).send('something broke!');
 });
 
 /*
@@ -121,11 +121,11 @@ app.get('/post_in_name', function(request, response) {
 //  POST 请求
 var bodyParser = require('body-parser');
 var multer = require('multer');
-/* 中间件：来解析Form里面没有 enctype="multipart/form-data" 的POST表单
- * 创建 application/x-www-form-urlencoded 编码解析
- * var bodyParser = require('body-parser');
- * var urlEncodedParser = bodyParser.urlencoded({extended:false});
- * app.post('/process_post', urlEncodedParser, function(request, response) {} */
+ // 中间件：来解析Form里面没有 enctype="multipart/form-data" 的POST表单
+ // * 创建 application/x-www-form-urlencoded 编码解析
+ // * var bodyParser = require('body-parser');
+ // * var urlEncodedParser = bodyParser.urlencoded({extended:false});
+ // * app.post('/process_post', urlEncodedParser, function(request, response) {} 
 var fs = require('fs');
 
 // Adding middleware instead of doing it directly in the app.post
@@ -169,8 +169,14 @@ app.post('/process_post', function(request, response) {
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 app.get('/cookie', function(req, res) {
-	res.end("Cookie: "JSON.stringify(req.cookies));
-	console.log("Cookie: "util.inspect(req.cookies));
+	res.end("Cookie: " + JSON.stringify(req.cookies));
+	console.log("Cookie: " + util.inspect(req.cookies));
+});
+
+// get python CGI
+app.get('/python', function(request,response) {
+	response.sendFile(__dirname + "/" + "hello.py");
+	console.log("Found Python file at: " + __dirname + "/hello.py");
 });
 
 // 截取所有的页面，所有页面都会做这件事
