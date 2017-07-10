@@ -7,6 +7,7 @@ def printBreakLine():
 class Employee:
 	'所有员工的基类, self 代表类的实例，self 在定义类的方法时是必须有的，虽然在调用时不必传入相应的参数。'
 	empCount = 0
+	species = "Human"
  
 	def __init__(self, name, salary):
 		self.name = name
@@ -23,6 +24,34 @@ class Employee:
 	def prt(self):
 		print(self)
 		print(self.__class__)
+
+	# A class method is shared among all instances
+	# They are called with the calling class as the first argument
+	@classmethod
+	def get_species(cls):
+		return cls.species
+
+	# A static method is called without a class or instance reference
+	@staticmethod
+	def grunt():
+		return "*grunt*"
+
+	# A property is just like a getter.
+	# It turns the method age() into an read-only attribute
+	# of the same name.
+	@property
+	def age(self):
+		return self._age
+
+	# This allows the property to be set
+	@age.setter
+	def age(self, age):
+		self._age = age
+
+	# This allows the property to be deleted
+	@age.deleter
+	def age(self):
+		del self._age
  
 emp1 = Employee("Michael", 1000)
 emp1.prt() 

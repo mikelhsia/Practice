@@ -144,6 +144,9 @@ print u"\u571f\u74dc\u7063\u7f8e\u666f\u885755\u865f\u5b89\u5eb7\u5927\u5ec8\u4e
 print u"\u4e5d\u9f8d\u4f55\u6587\u7530\u5fe0\u5b5d\u885760\u865f\u611b\u6c11\u90a8\u980c\u6c11\u6a1317\u6a131719\u5ba4 Hong Kong"
 
 import time
+# You can shorten module names
+# import time as m
+
 def printTime():
 	return "当前时间为: %s" % (time.strftime("%Y-%m-%d" ,time.localtime(time.time())))
 print printTime()
