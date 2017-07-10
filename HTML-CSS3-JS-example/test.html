@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="keywords" content="HTML, CSS, XML, XHTML, JavaScript">
+<meta name="description" content="Free Web tutorials on HTML and CSS">
+<meta name="author" content="Hege Refsnes">
+<meta charset="utf-8"> 
+<!--
+<style type="text/css">
+	h1 {
+		color:red;
+	}
+	h3 {
+		color:#3FEAD2;
+		padding-left:140px;
+	}
+	p {
+		color:blue;
+	}
+</style>
+-->
+<link rel="stylesheet" type="text/css" href="test.css">
+<script type="text/javascript" src="test.js"></script>
+<noscript> No javascript script is available.  </noscript>
+</head>
+<body>
+	<header>
+		<h1 class="head"> Most important heading </h1>
+		<h3> Less important heading </h3>
+	</header>
+	<nav>
+		<ul>
+			<li><a href='http://127.0.0.1:1025/test.html'>Home</a></li>
+			<li><a href='http://127.0.0.1:1025/'>Wordpress</a></li>
+			<li><a href='http://127.0.0.1:1025/?p=4'>Wordpress Post I</a></li>
+			<li><a href='http://127.0.0.1:1025/?p=19'>Wordpress Post II</a></li>
+		</ul>
+	</nav>
+	<article>
+	<!-- Map link on the images -->
+		<div>
+		<img id='image' src="001.jpg" alt='Big baby' width="25%" usemap=#babyface>
+
+		<map name="babyface">
+			<area shape="rect" coords="0,0,82,126" alt="face" href="http://baidu.com">
+			<area shape="circle" coords="90,200,30" alt="Mercury" href="http://google.com">
+			<area shape="circle" coords="124,58,8" alt="Venus" href="venus.htm">
+		</map>
+		<h1>Status: </h1><p><progress id="pg"  min="0" max="100" value='40'> </progress></p>
+		</div>
+	</article>
+	<article>
+		<h1> This is an article block of Audio</h1>
+		<p>
+		The text between the &ltaudio&gt and &ltaudio&gt tags will display in browsers that do not support the &ltaudio&gt element.
+		</p>
+		<section>
+			<h3>Audio Source as attribute (+ autoplay):</h3>
+			<!--<audio src="./Raining.mp3" controls autoplay>-->
+			<!--<audio src="./Raining.mp3" controls autoplay>-->
+			<audio src="./Raining.mp3" controls >
+				Audio element not supported by your browser.
+			</audio>
+		</section>
+		<section>
+			<h3>Audio Source as an element (+ loop):</h3>
+			<audio controls loop>
+				<source src='Raining.mp3' type='audio/mpeg'>
+		The text between the &ltaudio&gt and &ltaudio&gt tags will display in browsers that do not support the &ltaudio&gt element.
+				</audio>
+		</section>
+		<aside>
+		</aside>
+	</article>
+
+	<article>
+		<h1> This is an article block of Video</h1>
+		<section>
+			<h3>Video Source as an element (+ autoplay and loop):</h3>
+		        <!-- <video controls autoplay loop> -->
+		        <video width='15%' style="padding-left:20px;"  controls>
+				<source src="./MyBB.mp4" type='video/mp4'>
+				Video element not supported by your browser.
+			</video>
+		</section>
+		<aside>
+		</aside>
+	</article>
+
+	<article>
+		<h1> This is an article block of Video</h1>
+		<h3>There are two types of web storage objects:</h3>
+		<ul class='a'>
+			<li>sessionStorage()</li>
+			<li>localStorage()</li>
+		</ul>
+
+		<h3>Local vs. Session</h3>
+		<ul class='b'>
+			<li>Session Storage is destroyed once the user closes the browser</li>
+			<li>Local Storage stores data with no expiration date</li>
+		</ul>
+		<section>
+		</section>
+		<aside>
+		</aside>
+	</article>
+	<article>
+		<section>
+		<h3>Input number, and press enter to active the cookie counter:</h3>
+		<input type="text"/>
+		</section>
+		<section>
+		<p id='demo'></p>
+		<button onclick="getLocation()">Get location</button>
+
+		</section>
+		<aside>
+		</aside>
+	</article>
+	<article>
+	<div style="opacity:0.5;
+				position:absolute;
+				left:50px;
+				width:300px;
+				height:150px;
+				background-color:#40B3DF"></div>
+
+	<div style="font-family:verdana;
+				padding:20px;
+				border-radius:10px;
+				border:10px solid #EE872A; ">
+		<div style="opacity:0.3;
+					position:absolute;
+					left:120px;
+					width:100px;
+					height:300px;
+					background-color:#8AC007"></div>
+
+		<h3>Look! Styles and colors</h3>
+
+		<div style="letter-spacing:12px;">Manipulate Text</div>
+
+		<div style="color:#40B3DF;">Colors
+			<span style="background-color:#B4009E; color:#ffffff;">Boxes</span>
+		</div>
+
+		<div style="color:#000000;">and more...</div>
+
+	</div>
+	</article>
+	<article>
+		<h4>没有单元格间距:</h4>
+		<table id='t1' border="1">
+			<tr>
+			 <td>First</td>
+			 <td>Row</td>
+			</tr>
+			<tr>
+			  <td>Second</td>
+			    <td>Row</td>
+			</tr>
+		</table>
+
+		<h4>单元格间距="0":</h4>
+		<table id='t2' border="1" cellspacing="0">
+			<tr>
+			  <td>First</td>
+			    <td>Row</td>
+			</tr>
+			<tr>
+			  <td>Second</td>
+			    <td>Row</td>
+			</tr>
+		</table>
+
+		<h4>单元格间距="10":</h4>
+		<table id='t3' border="1" cellspacing="10">
+			<tr>
+			  <td>First</td>
+			    <td>Row</td>
+			</tr>
+			<tr>
+			  <td>Second</td>
+			    <td>Row</td>
+			</tr>
+		</table>
+	</article>
+	<article>
+		<!-- Autocomplete, novalidate, autofocus attribute -->
+		<p>不同种类的Input Type:</p>
+		<form action="demo-form.php" method="get" target='_blank' autocomplete='on'>
+			<input type='color'/>&nbsp <input type='date'/>&nbsp <input type='datetime'/>&nbsp
+			<input type='datetime-local'/>&nbsp <input type='email' placeholder='Email'/>&nbsp
+			<input type='month'/>&nbsp <input type='number' placeholder='3-8' min='3' maz='8' required/>&nbsp
+			<input type='range' placeholder='range 3-13' min='3' maz='13' step='2' value='5'/>&nbsp
+			<input type='search' placeholder='Search'/>&nbsp <input type='tel' placeholder='0-9' pattern='[0-9]*'/>&nbsp
+			<input type='time'/>&nbsp <input type='url' placeholder='url'/>&nbsp <input type='week'/>
+			<!-- Multiple images -->
+			Select images: <input type='file' name='img' multiple>
+			<!-- Input type -->
+			<input list="browsers" placeholder='请选择浏览器类型--' name="browser">
+			<datalist id="browsers">
+				<option value="Internet Explorer">
+				<option value="Firefox">
+				<option value="Chrome">
+			    <option value="Opera">
+				<option value="Safari">
+			</datalist>
+			<input type="submit">
+			<!--	Form method and action can be specified separately
+				<input type="submit2" formmethod='get' formaction='#' formtarget='_blank'>
+			-->
+		</form>
+		<p><strong>注意:</strong> Internet Explorer 9（更早 IE 版本），Safari 不支持 datalist 标签。</p>
+	</article>
+	<article>
+		<iframe id='round_border' src="#" name="iframe_a">
+			 <p>您的浏览器不支持  iframe 标签。</p>
+		</iframe>
+		<iframe id='stretch_border' src="#" name="iframe_a">
+			 <p>您的浏览器不支持  iframe 标签。</p>
+		</iframe>
+		<p><a href="http://www.runoob.com" target="iframe_a">RUNOOB.COM</a></p>
+
+		<p><b>注意：</b> 因为 a 标签的 target 属性是名为 iframe_a 的 iframe 框架，所以在点击链接时页面会显示在 iframe框架中。</p>
+	</article>
+
+	<article>
+		<canvas onclick="testing()" id="myCanvas" width="500" height="500" style="border:1px solid #00FF00;">
+			您的浏览器不支持 HTML5 canvas 标签。
+		</canvas>
+	</article>
+	<article>
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="250">
+		  <polygon  points="100,10 40,180 190,60 10,60 160,250" style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;">
+		</svg>
+	</article>
+	<article>
+		<p>可拖动此图片至下方方框内</p>
+		<img id='draggable_img' src='003.jpg' width=10% draggable='true' ondragstart="drag(event)" />
+		<div style="width:300px; height:300px; border:3px solid #aaaaaa;" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+	</article>
+	<article>
+		<div id="status" name="status">状态信息:</div>
+	</article>
+	<article>
+		<p>Worker来计数：<span id='result'></span>&nbsp<span><strong>注意：</strong> Internet Explorer 9 以下不支持 Web Workers.</span></p>
+		<button onclick='startWorker()'>Start worker</button>
+		<button onclick='stopWorker()'>Stop worker</button>
+	</article>
+	<article>
+		<section>
+			<h1>CSS字体:</h1>
+			<p>字体的选择: Time New Roman, Arial, Rourier New (<a href='http://www.runoob.com/cssref/css-websafe-fonts.html'>常用字体</a>)</p>
+			<p style='font-family:"Times New Roman";font-style:normal;'>字体的选择: Time New Roman</p>
+			<p style='font-family:Arial;font-style:italic;'>字体的选择: Arial</p>
+			<p style='font-family:serif;font-style:oblique;'>字体的选择: Serif</p>
+		</section>
+		<section>
+			<h1>CSS table:</h1>
+			<table id="customers">
+				<caption>Table 1.1 Customers</caption>
+				<tr> <th>Company</th> <th>Contact</th> <th>Country</th> </tr>
+				<tr> <td>Alfreds Futterkiste</td> <td>Maria Anders</td> <td>Germany</td> </tr>
+				<tr class="alt"> <td>Berglunds snabbköp</td> <td>Christina Berglund</td> <td>Sweden</td> </tr>
+				<tr> <td>Centro comercial Moctezuma</td> <td>Francisco Chang</td> <td>Mexico</td> </tr>
+				<tr class="alt"> <td>Ernst Handel</td> <td>Roland Mendel</td> <td>Austria</td> </tr>
+				<tr> <td>Island Trading</td> <td>Helen Bennett</td> <td>UK</td> </tr>
+				<tr class="alt"> <td>Königlich Essen</td> <td>Philip Cramer</td> <td>Germany</td> </tr>
+				<tr> <td>Laughing Bacchus Winecellars</td> <td>Yoshi Tannamuri</td> <td>Canada</td> </tr>
+				<tr class="alt"> <td>Magazzini Alimentari Riuniti</td> <td>Giovanni Rovelli</td> <td>Italy</td> </tr>
+				<tr> <td>North/South</td> <td>Simon Crowther</td> <td>UK</td> </tr>
+				<tr class="alt"> <td>Paris spécialités</td> <td>Marie Bertrand</td> <td>France</td> </tr>
+			</table>
+		</section>
+		<section>
+			<p class="dotted">点线轮廓</p>
+			<p class="dashed">虚线轮廓</p>
+			<p class="solid">实线轮廓</p>
+			<p class="double">双线轮廓</p>
+			<p class="groove">凹槽轮廓</p>
+			<p class="ridge">垄状轮廓</p>
+			<p class="inset">嵌入轮廓</p>
+			<p class="outset">外凸轮廓</p>
+		</section>
+		<section>
+			<table>
+				<caption><h1>CSS Dropdown menu</h1></caption>
+				<tr>
+					<td><h3>CSS dropdown menu 1</h3></td>
+					<td> <h3>CSS dropdown menu 1</h3> </td>
+				</tr>
+				<tr>
+					<td>
+						<div class="dropdown1">
+							<span>Mouse over me</span>
+							<div class="dropdown-content1">
+								<p>This is item No.1</p>
+								<p>This is item No.2</p>
+								<p>This is item No.3</p>
+							</div>
+						</div>
+					</td>
+					<td>
+						<div class='dropdown2'>
+							<button class='dropbtn2'>下拉菜单</button>
+							<div class='dropdown-content2'>
+								<a href='#'>Route 1</a>
+								<a href='#'>Route 2</a>
+								<a href='#'>Route 3</a>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</section>
+		<section style="background-color:white;">
+			<p>请把鼠标移动到单词上，可以看到鼠标指针发生变化：</p>
+			<div style="cursor:auto; margin-left:auto; margin-right:auto; background-color:grey; width:50%;">auto</div>
+			<span style="cursor:e-resize">e-resize</span><br>
+			<span style="cursor:help">help</span><br>
+			<div style="cursor:crosshair; position absolute; top:10px; width:400px; background-color: grey;">crosshair</div>
+			<span style="cursor:move">move</span><br>
+			<span style="cursor:n-resize">n-resize</span><br>
+			<span style="cursor:ne-resize">ne-resize</span><br>
+			<span style="cursor:nw-resize">nw-resize</span><br>
+			<div style="cursor:default; float:right;">default</div>
+			<span style="cursor:pointer">pointer</span><br>
+			<span style="cursor:progress">progress</span><br>
+			<span style="cursor:s-resize">s-resize</span><br>
+			<span style="cursor:se-resize">se-resize</span><br>
+			<span style="cursor:sw-resize">sw-resize</span><br>
+			<span style="cursor:text">text</span><br>
+			<span style="cursor:w-resize">w-resize</span><br>
+			<span style="cursor:wait">wait</span><br>
+		</section>
+		<section>
+			<div class='gallary'>
+				<a href='_blank' href='#'><img src='003.jpg' alt='003' width='110'></a>
+				<div class='gallary_desc'>Add a description of the image here</div>
+			</div>
+			<div class='gallary'>
+				<a href='_blank' href='#'><img src='004.jpg' alt='004' width='110'></a>
+				<div class='gallary_desc'>Add a description of the image here</div>
+			</div>
+			<div class='gallary'>
+				<a href='_blank' href='#'><img src='005.jpg' alt='005' width='110'></a>
+				<div class='gallary_desc'>Add a description of the image here</div>
+			</div>
+		</section>
+	</article>
+	<article>
+		<section>
+		<!--	
+			<img class='home' src='img_navsprites_hover.gif'/> 
+		-->
+			<div>
+				<ul id='navlist'>
+					<li id='home'><a href='#'></a></li>
+					<li id='prev'><a href='#'></a></li>
+					<li id='next'><a href='#'></a></li>
+				</ul>
+			</div>
+			<span home='no'>Home Span</span>
+			<span home='yes'>Home Span</span>
+		</section>
+	</article>
+	<article style="position:relative; top:70px;">
+		<section>
+			<p>四个值 - border-radius: 15px 50px 30px 5px:</p>
+			<p id="rcorners1"></p>
+			<p>三个值 - border-radius: 15px 50px 30px:</p>
+			<p id="rcorners2"></p>
+			<p>两个值 - border-radius: 15px 50px:</p>
+			<p id="rcorners3"></p>
+		</section>
+		<section>
+			<h1>Backgroud image example</h1>
+			<div id='bg_panel'></div>
+		</section>
+		<section>
+			<p>没有背景剪裁 (border-box没有定义):</p>
+			<div id="example1">
+				<h2>Lorem Ipsum Dolor</h2>
+				<span>This this the sample sentence to fill the space blah blah blah...</span>
+			</div>
+
+			<p>background-clip: padding-box:</p>
+			<div id="example2">
+				<h2>Lorem Ipsum Dolor</h2>
+				<span>This this the sample sentence to fill the space blah blah blah...</span>
+			</div>
+				
+			<p>background-clip: content-box:</p>
+			<div id="example3">
+				<h2>Lorem Ipsum Dolor</h2>
+				<span>This this the sample sentence to fill the space blah blah blah...</span>
+			</div>
+			<p>Gradient - 渐变颜色<h3>background: linear-gradient(direction, color-stop1, color-stop2, ...);</h3></p>
+			从上到下
+			<div id='grad1'> </div>
+			从左到右
+			<div id='grad2'> </div>
+			从左上到右下
+			<div id='grad3'> </div>
+			<p>渐变的使用角度<h3>background: linear-gradient(angle, color-stop1, color-stop2); </h3></p>
+			<img src='gradient_angle.jpg' style='width:30%;'/>
+			角度渐变
+			<div id='grad4'> </div>
+			多个颜色节点
+			<div id='grad5'></div>
+			一个重复性的渐变
+			<div id='grad6'></div>
+			<p>CSS3径向渐变<h3>background: radial-gradient(center, shape size, start-color, ..., last-color); </h3></p>
+			径向渐变 - 颜色结点均匀分布（默认情况下）
+			<div id='grad7'></div>
+			径向渐变 - 颜色结点不均匀分布
+			<div id='grad8'></div>
+			径向渐变 - 设置形状：circle or ellipse(default)
+			<div id='grad9'></div>
+			<div>
+			不同尺寸大小关键字的使用
+			</div>
+			<div id='grad10'></div>
+			<div id='grad11'></div>
+			<div id='grad12'></div>
+			<div id='grad13'></div>
+			重复的径向渐变
+			<div id='grad14'></div>
+		</sectin>
+		<section>
+			<div id='sha1'>This is example for text shadow</div>
+			<div id='sha2'></div>
+			<div id='sha3'></div>
+			<h3>照片效果</h3>
+			<div style='width:680px;height:702px;' >
+				<div id='boxshadow'>
+					<img id='boxshadow_img' src='./008.jpg' alt='Bird' width='784' height='402'/>
+				</div>
+			</div>
+			<h3>box-shadow 属性用来可以创建纸质样式卡片</h3>
+			<div id='card'>
+				<div id='card_header'>
+					<span>1</span>
+				</div>
+				<div id='card_container'>
+					<span>January 1, 2016</span>
+				</div>
+			</div>
+		</section>
+		<section>
+			<p>以下 div 容器内的文本无法完全显示，可以看到它被裁剪了。</p>
+			<p>div 使用 &quot;text-overflow:ellipsis&quot;:</p>
+			<div class="test" style="text-overflow:ellipsis;">This is some long text that will not fit in the box</div>
+			<p>div 使用 &quot;text-overflow:clip&quot;:</p>
+			<div class="test" style="text-overflow:clip;">This is some long text that will not fit in the box</div>
+			<p>div 使用自定义字符串 &quot;text-overflow: &gt;&gt;&quot;(只在 Firefox 浏览器下有效):</p>
+			<div class="test" style="text-overflow:'>>';">This is some long text that will not fit in the box</div>
+		</section>
+		<section>
+			<span id='myFont'><b>Attention: </b>This is the test of <i>the first font</i> that I have!</span>
+		</section>
+		<section>
+			<div id='twoD_tl'>Hello</div>
+			<div id='twoD_rt'>Hello</div>
+			<div id='twoD_sc'>Hello</div>
+			<div id='twoD_sk'>Hello</div>
+			<div id='twoD_mt'>Hello</div>
+		</section>
+		<section>
+			<div id='transition'></div>
+			<div id='myAnime'></div>
+			<div id='mySecondAnime'></div>
+		</section>
+		<section>
+			<div id='resize'>给使用者有调整元素大小高宽的能力。点击此处右下角拖移</div>
+		</section>
+		<section>
+			<div class="container">
+				<div class="box">这个 div 占据了左边的一半。.</div>
+				<div class="box">这个 div 占据了右边的一半。</div>
+			</div>
+		</section>
+		<section>
+			<div class='outline'> 这个div有一个轮廓边界15px边境外的边缘
+			</div>
+		</section>
+		<section>
+			<div id='ap_i'>Appearance icon</div>
+			<div id='ap_w'>Appearance window</div>
+			<div id='ap_b'>Appearance button</div>
+			<div id='ap_m'>Appearance menu</div>
+			<div id='ap_f'>Appearance field</div>
+		</section>
+		<section>
+			<img src='001.jpg' id='img1'/>
+			<img src='002.jpg' id='img2'/>
+			<img src='003.jpg' id='img3' alt="Paris"/>
+			<img src='004.jpg' id='img4'/>
+		</section>
+		<section>
+			<div id='textOnImgContainer'>
+				<img id='textOnImgImg' src='007.jpg' alt='Norway'>
+				<div id='topLeftText'>Top Left</div>
+				<div id='topRightText'>Top Right</div>
+				<div id='bottomLeftText'>Bottom Left</div>
+				<div id='bottomRightText'>Bottom Right</div>
+				<div id='middleText'>Middle</div>
+			</div>
+		</section>
+		<section>
+			<h2 style="text-align:center;">响应式图片相册</h2>
+			<div class="responsive">
+				<div class="resp_album_img">
+						<img src="005.jpg" alt="Trolltunga Norway" width="300" height="200">
+					<div class="resp_album_desc">Add a description of the image here</div>
+				</div>
+			</div>
+			<div class="responsive">
+				<div class="resp_album_img">
+						<img src="006.jpg" alt="Trolltunga Norway" width="300" height="200">
+					<div class="resp_album_desc">Add a description of the image here</div>
+				</div>
+			</div>
+			<div class="responsive">
+				<div class="resp_album_img">
+						<img src="009.jpg" alt="Trolltunga Norway" width="300" height="200">
+					<div class="resp_album_desc">Add a description of the image here</div>
+				</div>
+			</div>
+			<div class="responsive">
+				<div class="resp_album_img">
+						<img src="008.jpg" alt="Trolltunga Norway" width="300" height="200">
+					<div class="resp_album_desc">Add a description of the image here</div>
+				</div>
+			</div>
+			<div class='clearfix'></div>
+		</section>
+		<section>
+			<img id='modal_img' src="009.jpg" width='300px' height='auto' onclick='modal_open()'>
+			<div id='modal_container' onclick='modal_close()'>
+				<span id='modal_close_icon'>x</span>
+				<img id='modal_content'>
+			</div>
+		</section>
+		<section>
+			<button class="button_anima1" style="vertical-align:middle"><span>Hover </span></button>
+			<button class="button_anima2">Click Me</button>
+		</section>
+		<section>
+			<h2>简单的分页</h2>
+			<ul class="pagination">
+				<li><a href="#">«</a></li>
+				<li><a href="#">1</a></li>
+				<li><a class="active" href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#">6</a></li>
+				<li><a href="#">7</a></li>
+				<li><a href="#">»</a></li>
+			</ul>
+			<h2>面包屑导航</h2>
+			<ul class="breadcrumb">
+				<li><a href="#">首页 </a></li>
+				<li><a href="#">前端 </a></li>
+				<li><a href="#">HTML 教程 </a></li>
+				<li>HTML 段落</li>
+			</ul>
+		</section>
+		<section>
+			<h3>面包屑导航</h3>
+			<div class="flex-container">
+				<div class="flex-item">flex item 1</div>
+				<div class="flex-item">flex item 2</div>
+				<div class="flex-item">flex item 3</div>  
+			</div>
+		</section>
+	</article>
+	<footer>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,24 @@
+/* Very important
+确保所有的 HTML 元素都有 box-sizing 属性且设置为 border-box。 确保边距和边框包含在元素的宽度和高度间。 */
+* {
+	box-sizing: border-box;
+}
+
+.header {
+	border:1px solid red;
+	padding: 15px;
+}
+
+.menu {
+	width:25%;
+	float:left;
+	padding:15px;
+	border: 1px solid red;
+}
+
+.main {
+	width: 75%;
+	float:left;
+	padding:15px;
+	border:1px solid red;
+}

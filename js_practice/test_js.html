@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Javascript Practice</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel='stylesheet'>
+    <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!-- 注意： 如果通过 file://  引入 Respond.js 文件，则该文件无法起效果 -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .formLabel {
+            width:70px;
+        }
+        .formField {
+            width:400px;
+        }
+        .formButton {
+            float:right;
+            margin-right:120px;
+        }
+    </style>
+</head>
+<body>
+<div style="margin:20px; padding:20px; border:2px dashed black;">
+    <p id="pos">尾部定位点</p>
+    <img src="pic_htmltree.gif" width="35%">
+    <button type="button" onclick="change_image()">Change the image above</button>
+
+    <br>
+    <div style="width:700px; background: lightgrey; border:2px solid royalblue; border-radius:4px;" class="row">
+        <form action="test_js.html" id="contactForm" method="GET" onsubmit="validateForm()">
+            <ul style="list-style:none;">
+                <li>
+                    <label for="contactName" class="formLabel">Name:</label>
+                    <input type="text" name="contactName" class="formField" id="contactName" value=""/>
+                </li>
+                <li>
+                    <label for="email" class="formLabel">Email</label>
+                    <input type="text" name="email" class="formField" id="email" value="" required/>
+                </li>
+                <li>
+                    <label for="commentsText" class="formLabel">Message:</label>
+                    <textarea name="comments" id="commentsText" class="formField" rows="10" cols="30" required></textarea>
+                </li>
+                <li>
+                    <input type="submit" value="Send email" class="formButton"/>
+                </li>
+            </ul>
+            <input type="hidden" name="submitted" id="submitted" value="true" />
+        </form>
+    </div>
+    <div class="row">
+        <div id="demo" value="3"></div>
+        <div id="mess"></div>
+        <div id="json_text0"></div>
+        <div id="json_text1"></div>
+        <div id="json_text2"></div>
+
+        <button type="button" onclick="addButton()">计数!</button>
+        <div id="demo2"><div style="display:inline;">First</div><span>&nbsp;second</span></div>
+        <br>
+        <button id="appendNode" class="btn btn-default btn-sm">Append Node</button><button id="removeNode" class="btn btn-default btn-sm">Remove Node</button>
+        <br>
+    </div>
+    <div class="row">
+        <script type="text/javascript" src="test.js"></script>
+    </div>
+    <div class="row">
+        <input type="button" value="load location new page" onclick="loc_assign()">
+    </div>
+    <div class="row">
+        <input type="button" value="<< Back" class="btn btn-default btn-sm" onclick="web_back()"><input type="button" value="Forward >>" class="btn btn-default btn-sm" onclick="web_forward()">
+    </div>
+</div>
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="https://code.jquery.com/jquery.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="../php_practice/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</body>
+</html>
