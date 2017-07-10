@@ -143,3 +143,10 @@ else:
 # os.chdir()
 # os.getcwd()
 
+# A newer way to format strings is the format method.
+# This method is the preferred way
+print "{} is a {}".format("This", "placeholder")
+print "{0} can be {1}".format("strings", "formatted")
+# You can use keywords if you don't want to count.
+print "{name} wants to eat {food}".format(name="Bob", food="lasagna")
+
