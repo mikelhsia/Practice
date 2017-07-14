@@ -147,9 +147,12 @@ import time
 # You can shorten module names
 # import time as m
 
-def printTime():
+i = 5
+def printTime(xx = i):	# 默认值在函数 定义 作用域被解析, so i=5
 	return "当前时间为: %s" % (time.strftime("%Y-%m-%d" ,time.localtime(time.time())))
 print printTime()
+
+i=6
 
 dictionary={}
 dictionary['1'] = 'one'
@@ -158,3 +161,54 @@ print dictionary['1']
 x='2'
 dictionary[x] = 'two'
 print dictionary[x]
+
+
+# 重要警告: 默认值只被赋值一次。这使得当默认值是可变对象时会有所不同，
+# 比如列表、字典或者大多数类的实例。例如，
+# 下面的函数在后续调用过程中会累积（前面）传给它的参数:
+def f(a, L=[]):
+    L.append(a)
+    return L
+
+print f(1)
+print f(2)
+print f(3)
+
+
+squares = [x**2 for x in range(10)]
+
+
+print [(x, y) for x in [1,2,3] for y in [3,1,4] if x != y]
+# 等同于
+# >>> combs = []
+# >>> for x in [1,2,3]:
+# ...     for y in [3,1,4]:
+# ...         if x != y:
+# ...             combs.append((x, y))
+# ...
+# >>> combs
+
+
+matrix=[[1,1,1],[2,2,2],[3,3,3],[4,4,4]]
+print [[row[i] for row in matrix] for i in range(3)]
+
+t = 12345,54321,"abcde"
+print t
+
+x, y, z = t
+print x, ', ', y, ', ', z
+
+# 直接创造字典
+# a = dict([('sape', 4139), ('guido', 4127), ('jack', 4098)])
+
+# 更简单创造字典
+print {x: x**2 for x in (2, 4, 6)}
+
+# 更快
+# print dict(sape=4139, guido=4127, jack=4098)
+
+
+questions = ['name', 'quest', 'favorite color']
+answers = ['lancelot', 'the holy grail', 'blue']
+for q,a in zip(questions,answers):
+	print 'What is your {0}?  It is {1}.'.format(q, a)

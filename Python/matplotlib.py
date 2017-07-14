@@ -1,4 +1,8 @@
-# import matplotlib.pyplot as plt
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
+# import matplotlib as plt
+import matplotlib.pyplot as plt
 import numpy as np
 
 x = np.linspace(1, 2*np.pi, 50)
