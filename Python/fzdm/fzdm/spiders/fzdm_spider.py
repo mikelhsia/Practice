@@ -15,6 +15,7 @@ import os
 from fzdm.items import FzdmItem
 
 class fzdmSpider(scrapy.Spider):
+	# 必须定义name，即爬虫名，如果没有name，会报错。因为源码中是定义为必须的。
 	name = "fzdm"
 	allowed_domains = ["manhua.fzdm.com/"]
 	# Scrapy为Spider的 start_urls 属性中的每个URL创建了 scrapy.Request 对象，
@@ -38,6 +39,7 @@ class fzdmSpider(scrapy.Spider):
 		# - css(): 传入CSS表达式，返回该表达式所对应的所有节点的selector list列表.
 		# - extract(): 序列化该节点为unicode字符串并返回list。
 		# - re(): 根据传入的正则表达式对数据进行提取，返回unicode字符串list列表。
+
 		'''
 		filename = response.url.split("/")[-1]
 		dirname = response.url.split("/")[-2]
@@ -52,10 +54,30 @@ class fzdmSpider(scrapy.Spider):
 			# 	print line
 			f.write(response.body)
 		'''
+		
 		item = FzdmItem()
 		item['name'] = response.xpath('//title/text()').extract()
 		item['mhss'] = 'p1.xiaoshidi.net'
-		item['mhurl'] = response.xpath('//img//@src').extract()
+		item['mhurl'] = response.xpath('//script[@type="text/javascript"]/text()').extract()
+		# print type(item['mhurl']) is a list
+
+		# import re
+		# pattern = 'var mhurl = \"(d*/d*/d*.jpb)'
+		# for line in item['mhurl']:
+		# 	result = re.match(pattern, line)
+		# 	if result:
+		# 		print 'Find out match group[0]: ', result.group(0)
+		# 		print 'Find out match group[1]: ', result.group(1)
+		# 		break
 
 		return item
+
+		'''
+		# 获取所有的url，继续访问，并在其中寻找相同的url
+		# 即通过yield生成器向每一个url发送request请求，并执行返回函数parse
+        all_urls = hxs.select('//a/@href').extract()
+        for url in all_urls:
+            if url.startswith('http://www.xiaohuar.com/list-1-'):
+                yield Request(url, callback=self.parse)
+		'''
 
