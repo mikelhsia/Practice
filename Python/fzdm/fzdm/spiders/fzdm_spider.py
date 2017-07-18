@@ -2,6 +2,20 @@
 #! -*- coding: UTF-8 -*-
 
 '''
+对spider来说，爬取的循环类似下文:
+
+以初始的URL初始化Request，并设置回调函数。 
+当该request下载完毕并返回时，将生成response，并作为参数传给该回调函数。
+spider中初始的request是通过调用 start_requests() 来获取的。 
+start_requests() 读取 start_urls 中的URL， 并以 parse 为回调函数生成 Request 。
+在回调函数内分析返回的(网页)内容，返回 Item 对象或者 Request 或者一个包括二者的可迭代容器。 
+返回的Request对象之后会经过Scrapy处理，下载相应的内容，并调用设置的callback函数(函数可相同)。
+在回调函数内，您可以使用 选择器(Selectors) (您也可以使用BeautifulSoup, lxml 或者您想用的任何解析器) 
+来分析网页内容，并根据分析的数据生成item。
+最后，由spider返回的item将被存到数据库(由某些 Item Pipeline 处理)或使用 Feed exports 存入到文件中。
+'''
+
+'''
 为了创建一个Spider，您必须继承 scrapy.Spider 类， 且定义以下三个属性:
 1. name: 用于区别Spider。 该名字必须是唯一的，您不可以为不同的Spider设定相同的名字。
 2. start_urls: 包含了Spider在启动时进行爬取的url列表。 因此，第一个被获取到的页面将是其中之一。 
@@ -22,11 +36,9 @@ class fzdmSpider(scrapy.Spider):
 	# 并将 parse 方法作为回调函数(callback)赋值给了Request。
 	start_urls = []
 	for x in range(1):
+		start_urls.append("http://manhua.fzdm.com/%d/%d/index.html" % (56, 223-x))
 		for y in range(22):
-			try:
-				start_urls.append("http://manhua.fzdm.com/56/%d/index_%d.html" % (223-x, y+1))
-			except:
-				print "This page [%d] doesn't exist", y+1
+			start_urls.append("http://manhua.fzdm.com/%d/%d/index_%d.html" % (56, 223-x, y+1))
 
 
 	def parse(self, response):
@@ -40,7 +52,27 @@ class fzdmSpider(scrapy.Spider):
 		# - extract(): 序列化该节点为unicode字符串并返回list。
 		# - re(): 根据传入的正则表达式对数据进行提取，返回unicode字符串list列表。
 
+		item = FzdmItem()
+		item['name'] = response.xpath('//title/text()').extract()
+		item['mhss'] = u'p1.xiaoshidi.net'
+		item['mhurl'] = response.xpath('//script[@type="text/javascript"]/text()').extract()
+		# print type(item['mhurl']) is a list
+
+		for line in item['mhurl']:
+			startStr = 'var mhurl = "'
+			endStr = 'jpg'
+			startIdx = line.find(startStr)
+			endIdx = line.find(endStr)
+			if startIdx > 0:
+				# print line[resultIdx+13:resultIdx+40]
+				# print "[Found]!"
+				item['mhurl'] = line[startIdx+13:endIdx+3]
+				break
+
+		# url = "http://%s/%s" % (item['mhss'],mhurl)
+
 		'''
+		# Creating all the folder and file necessary
 		filename = response.url.split("/")[-1]
 		dirname = response.url.split("/")[-2]
 		try:
@@ -54,21 +86,6 @@ class fzdmSpider(scrapy.Spider):
 			# 	print line
 			f.write(response.body)
 		'''
-		
-		item = FzdmItem()
-		item['name'] = response.xpath('//title/text()').extract()
-		item['mhss'] = 'p1.xiaoshidi.net'
-		item['mhurl'] = response.xpath('//script[@type="text/javascript"]/text()').extract()
-		# print type(item['mhurl']) is a list
-
-		# import re
-		# pattern = 'var mhurl = \"(d*/d*/d*.jpb)'
-		# for line in item['mhurl']:
-		# 	result = re.match(pattern, line)
-		# 	if result:
-		# 		print 'Find out match group[0]: ', result.group(0)
-		# 		print 'Find out match group[1]: ', result.group(1)
-		# 		break
 
 		return item
 
