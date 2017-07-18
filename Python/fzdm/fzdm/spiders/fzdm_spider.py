@@ -64,12 +64,12 @@ class fzdmSpider(scrapy.Spider):
 			startIdx = line.find(startStr)
 			endIdx = line.find(endStr)
 			if startIdx > 0:
-				# print line[resultIdx+13:resultIdx+40]
-				# print "[Found]!"
+				self.log(line[startIdx+13:endIdx+3])
+				self.log("[Found]!")
 				item['mhurl'] = line[startIdx+13:endIdx+3]
 				break
 
-		# url = "http://%s/%s" % (item['mhss'],mhurl)
+		self.log("http://%s/%s" % (item['mhss'],item['mhurl']))
 
 		'''
 		# Creating all the folder and file necessary
