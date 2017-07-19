@@ -25,8 +25,14 @@ start_requests() 读取 start_urls 中的URL， 并以 parse 为回调函数生�
 '''
 import scrapy
 import os
+import sys
+import urllib
+import time
 
 from fzdm.items import FzdmItem
+
+manga = 131
+targetChap = 138
 
 class fzdmSpider(scrapy.Spider):
 	# 必须定义name，即爬虫名，如果没有name，会报错。因为源码中是定义为必须的。
@@ -35,12 +41,12 @@ class fzdmSpider(scrapy.Spider):
 	# Scrapy为Spider的 start_urls 属性中的每个URL创建了 scrapy.Request 对象，
 	# 并将 parse 方法作为回调函数(callback)赋值给了Request。
 	start_urls = []
-	for x in range(1):
-		start_urls.append("http://manhua.fzdm.com/%d/%d/index.html" % (56, 223-x))
-		print "http://manhua.fzdm.com/%d/%d/index.html" % (56, 223-x)
+	for x in range(4):
+		start_urls.append("http://manhua.fzdm.com/%d/%d/index.html" % (manga, targetChap+x))
+		print "http://manhua.fzdm.com/%d/%d/index.html" % (manga, targetChap+x)
 		for y in range(22):
-			start_urls.append("http://manhua.fzdm.com/%d/%d/index_%d.html" % (56, 223-x, y+1))
-			print "http://manhua.fzdm.com/%d/%d/index_%d.html" % (56, 223-x, y+1)
+			start_urls.append("http://manhua.fzdm.com/%d/%d/index_%d.html" % (manga, targetChap+x, y+1))
+			print "http://manhua.fzdm.com/%d/%d/index_%d.html" % (manga, targetChap+x, y+1)
 
 
 	def parse(self, response):
@@ -66,20 +72,43 @@ class fzdmSpider(scrapy.Spider):
 			startIdx = line.find(startStr)
 			endIdx = line.find(endStr)
 			if startIdx > 0:
-				self.log(line[startIdx+13:endIdx+3])
-				self.log("[Found]!")
+				# self.log(line[startIdx+13:endIdx+3])
+				# self.log("[Found]!")
 				item['mhurl'] = line[startIdx+13:endIdx+3]
 				break
 
-		self.log("http://%s/%s" % (item['mhss'],item['mhurl']))
+		'''
+		with open(dirname + '/' + filename, 'wb') as f:
+			# for line in response.body:
+			# 	print line
+			f.write(response.body)
+		'''
 
-'''
+		src = "http://%s/%s" % (item['mhss'],item['mhurl'])
+		fileName = item['mhurl']
+		fileName = fileName.replace('/','-')
+		dirName = response.url.split("/")[-2]
+		filePath = "%s/%s" % (os.getcwd(), dirName)
+		dst = os.path.join(filePath, fileName)
+
+		# Creating all the folder and file necessary
+		# filename = response.url.split("/")[-1]
+		try:
+			os.mkdir(dirName)
+		except:
+			# self.log("[IOError]: folder is already exist!")
+			pass
+
+		urllib.urlretrieve(src, dst)
+		time.sleep(0.3)
+		'''
 		ab_src = "http://www.xiaohuar.com" + src[0]#相对路径拼接
-                   file_name = "%s_%s.jpg" % (school[0].encode('utf-8'), name[0].encode('utf-8')) #文件名，因为python27默认编码格式是unicode编码，因此我们需要编码成utf-8
-                   file_path = os.path.join("/Users/wupeiqi/PycharmProjects/beauty/pic", file_name)
-                   urllib.urlretrieve(ab_src, file_path)
-                   注：urllib.urlretrieve(ab_src, file_path) ，接收文件路径和需要保存的路径，会自动去文件路径下载并保存到我们指定的本地路径。
-'''
+		file_name = "%s_%s.jpg" % (school[0].encode('utf-8'), name[0].encode('utf-8')) #文件名，因为python27默认编码格式是unicode编码，因此我们需要编码成utf-8
+		file_path = os.path.join("/Users/wupeiqi/PycharmProjects/beauty/pic", file_name)
+		urllib.urlretrieve(ab_src, file_path)
+		注：urllib.urlretrieve(ab_src, file_path) ，接收文件路径和需要保存的路径，会自动去文件路径下载并保存到我们指定的本地路径。
+		'''
+		return item
 
 
 
@@ -107,33 +136,12 @@ class fzdmSpider(scrapy.Spider):
 注：可以修改settings.py 中的配置文件，以此来指定“递归”的层数，如： DEPTH_LIMIT = 1
 '''
 
-
-
-
-		'''
-		# Creating all the folder and file necessary
-		filename = response.url.split("/")[-1]
-		dirname = response.url.split("/")[-2]
-		try:
-			os.mkdir(dirname)
-		except:
-			# print "folder is already exist@"
-			pass
-
-		with open(dirname + '/' + filename, 'wb') as f:
-			# for line in response.body:
-			# 	print line
-			f.write(response.body)
-		'''
-
-		return item
-
-		'''
-		# 获取所有的url，继续访问，并在其中寻找相同的url
-		# 即通过yield生成器向每一个url发送request请求，并执行返回函数parse
-        all_urls = hxs.select('//a/@href').extract()
-        for url in all_urls:
-            if url.startswith('http://www.xiaohuar.com/list-1-'):
-                yield Request(url, callback=self.parse)
-		'''
+'''
+# 获取所有的url，继续访问，并在其中寻找相同的url
+# 即通过yield生成器向每一个url发送request请求，并执行返回函数parse
+	all_urls = hxs.select('//a/@href').extract()
+	for url in all_urls:
+		if url.startswith('http://www.xiaohuar.com/list-1-'):
+			yield Request(url, callback=self.parse)
+'''
 
