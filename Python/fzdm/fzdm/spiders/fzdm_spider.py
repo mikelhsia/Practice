@@ -37,8 +37,10 @@ class fzdmSpider(scrapy.Spider):
 	start_urls = []
 	for x in range(1):
 		start_urls.append("http://manhua.fzdm.com/%d/%d/index.html" % (56, 223-x))
+		print "http://manhua.fzdm.com/%d/%d/index.html" % (56, 223-x)
 		for y in range(22):
 			start_urls.append("http://manhua.fzdm.com/%d/%d/index_%d.html" % (56, 223-x, y+1))
+			print "http://manhua.fzdm.com/%d/%d/index_%d.html" % (56, 223-x, y+1)
 
 
 	def parse(self, response):
