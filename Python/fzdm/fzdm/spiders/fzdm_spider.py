@@ -101,7 +101,10 @@ class fzdmSpider(scrapy.Spider):
 			pass
 
 		urllib.urlretrieve(src, dst)
-		time.sleep(0.3)
+		
+		# 怕太频繁的要求会被挡IP
+		# time.sleep(0.3)
+
 		'''
 		ab_src = "http://www.xiaohuar.com" + src[0]#相对路径拼接
 		file_name = "%s_%s.jpg" % (school[0].encode('utf-8'), name[0].encode('utf-8')) #文件名，因为python27默认编码格式是unicode编码，因此我们需要编码成utf-8
@@ -118,6 +121,7 @@ class fzdmSpider(scrapy.Spider):
 上述代码仅仅实现了一个url的爬取，如果该url的爬取的内容中包含了其他url，而我们也想对其进行爬取，那么如何实现递归爬取网页呢？
 
 示例代码：
+<<<<<<< HEAD
  # 获取所有的url，继续访问，并在其中寻找相同的url
         all_urls = hxs.select('//a/@href').extract()
         for url in all_urls:
@@ -125,5 +129,13 @@ class fzdmSpider(scrapy.Spider):
                 yield Request(url, callback=self.parse)
 即通过yield生成器向每一个url发送request请求，并执行返回函数parse，从而递归获取校花图片和校花姓名学校等信息。
 注：可以修改settings.py 中的配置文件，以此来指定“递归”的层数，如： DEPTH_LIMIT = 1
+=======
+# 获取所有的url，继续访问，并在其中寻找相同的url
+# 即通过yield生成器向每一个url发送request请求，并执行返回函数parse
+	all_urls = hxs.select('//a/@href').extract()
+	for url in all_urls:
+		if url.startswith('http://www.xiaohuar.com/list-1-'):
+			yield Request(url, callback=self.parse)
+>>>>>>> e5b2ddf90d855ccd489bed6c82c495feeb22e625
 '''
 
