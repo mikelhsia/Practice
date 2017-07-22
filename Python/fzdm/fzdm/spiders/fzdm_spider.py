@@ -66,8 +66,23 @@ class fzdmSpider(scrapy.Spider):
 		item['name'] = response.xpath('//title/text()').extract()
 		item['mhss'] = u's1.nb-pintai.com'
 		item['mhurl'] = response.xpath('//script[@type="text/javascript"]/text()').extract()
-		# print type(item['mhurl']) is a list
 
+'''
+class scrapy.selector.Selector(response=None, text=None, type=None)
+#########################################
+Selector 的实例是对选择某些内容响应的封装。
+response 是 HtmlResponse 或 XmlResponse 的一个对象，将被用来选择和提取数据。
+
+text 是在 response 不可用时的一个unicode字符串或utf-8编码的文字。将 text 和 response 一起使用是未定义行为。
+
+type 定义了选择器类型，可以是 "html", "xml" or None (默认).
+	如果 type 是 None ，选择器会根据 response 类型(参见下面)自动选择最佳的类型，或者在和 text 一起使用时，默认为 "html" 。
+	如果 type 是 None ，并传递了一个 response ，选择器类型将从response类型中推导如下：
+		"html" for HtmlResponse type
+		"xml" for XmlResponse type
+		"html" for anything else
+	其他情况下，如果设定了 type ，选择器类型将被强制设定，而不进行检测。
+'''
 		for line in item['mhurl']:
 			startStr = 'var mhurl = "'
 			endStr = 'jpg'
@@ -107,7 +122,7 @@ class fzdmSpider(scrapy.Spider):
 		urllib.urlretrieve(src, dst)
 		
 		# 怕太频繁的要求会被挡IP
-		# time.sleep(0.3)
+		time.sleep(0.3)
 
 		return item
 '''
