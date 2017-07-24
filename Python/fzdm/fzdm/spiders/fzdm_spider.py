@@ -48,8 +48,6 @@ class fzdmSpider(scrapy.Spider):
 		start_urls.append("http://manhua.fzdm.com/%d/%d/index.html" % (manga, targetChap+x))
 		# print "http://manhua.fzdm.com/%d/%d/index.html" % (manga, targetChap+x)
 
-		# pageList = response.xpath('//div[@class="navigation"]/a/@href').extract()
-		# for y in range(len(pageList)):
 		for y in range(22):
 			start_urls.append("http://manhua.fzdm.com/%d/%d/index_%d.html" % (manga, targetChap+x, y+1))
 			# print "http://manhua.fzdm.com/%d/%d/index_%d.html" % (manga, targetChap+x, y+1)
@@ -62,31 +60,66 @@ class fzdmSpider(scrapy.Spider):
 		# 	-- /html/head/title/text(): 选择上面提到的 <title> 元素的文字
 		# 	-- //td: 选择所有的 <td> 元素
 		# 	-- //div[@class="mine"]: 选择所有具有 class="mine" 属性的 div 元素
+		# article	选取所有article元素的所有子节点
+		# /article	选取根元素article
+		# article/a	选取所有属于article的子元素的a元素
+		# //div	选取所有div元素（不管出现在文档里的任何地方）
+		# article//div	选取所有属于article元素的后代的div元素，不管它出现在article之下的任何位置
+		# //@class	选取所有名为class的属性
+		# /article/div[1]	选取属于article子元素的第一个div元素
+		# /article/div[last()]	选取属于article子元素的最后一个div元素
+		# /article/div[last()-1]	选取属于article子元素的倒数第二个div元素
+		# //div[@lang]	选取所有拥有lang属性的div元素
+		# //div[@lang='eng']	选取所有lang属性值为eng的div元素
+		# /div/*	选取属于div元素的所有子节点
+		# //*	选取所有元素
+		# //div[@*]	选取所有带属性的div 元素
+		# //div/a 丨//div/p	选取所有div元素的a和p元素
+		# //span丨//ul	选取文档中的span和ul元素
+		# article/div/p丨//span	选取所有属于article元素的div元素的p元素以及文档中所有的 span元素
+		##################
 		# - css(): 传入CSS表达式，返回该表达式所对应的所有节点的selector list列表.
+		# *	选择所有节点
+		# #container	选择id为container的节点
+		# .container	选择所有class包含container的节点
+		# li a	选取所有li下的所有a节点
+		# ul + p	选择ul后面的第一个p元素
+		# div#container > ul	选取id为container的div的第一个ul子元素
+		# ul ~ p	选取与ul相邻的所有p元素
+		# a[title]	选取所有有title属性的a元素
+		# a[href="http://163.com"]	选取所有href属性为163的a元素
+		# a[href*="163"]	选取所有href属性包含163的a元素
+		# a[href^="http"]	选取所有href属性以http开头的a元素
+		# a[href$=".jpg"]	选取所有href以.jpg结尾的a元素
+		# input[type=radio]:checked	选择选中的radio的元素
+		# div:not(#container)	选取所有id非container的div属性
+		# li:nth-child(3)	选取第三个li元素
+		# tr:nth-child(2n)	第偶数个tr
+		##################
 		# - extract(): 序列化该节点为unicode字符串并返回list。
 		# - re(): 根据传入的正则表达式对数据进行提取，返回unicode字符串list列表。
+		#########################################
+		# class scrapy.selector.Selector(response=None, text=None, type=None)
+		#########################################
+		# Selector 的实例是对选择某些内容响应的封装。
+		# response 是 HtmlResponse 或 XmlResponse 的一个对象，将被用来选择和提取数据。
+		#
+		# text 是在 response 不可用时的一个unicode字符串或utf-8编码的文字。将 text 和 response 一起使用是未定义行为。
+		# 
+		# type 定义了选择器类型，可以是 "html", "xml" or None (默认).
+		# 	如果 type 是 None ，选择器会根据 response 类型(参见下面)自动选择最佳的类型，或者在和 text 一起使用时，默认为 "html" 。
+		# 	如果 type 是 None ，并传递了一个 response ，选择器类型将从response类型中推导如下：
+		# 		"html" for HtmlResponse type
+		# 		"xml" for XmlResponse type
+		# 		"html" for anything else
+		# 	其他情况下，如果设定了 type ，选择器类型将被强制设定，而不进行检测。
 
 		item = FzdmItem()
 		item['name'] = response.xpath('//title/text()').extract()
+		# Servers url that store images before 2015
 		item['mhss'] = u's1.nb-pintai.com'
 		item['mhurl'] = response.xpath('//script[@type="text/javascript"]/text()').extract()
 
-'''
-class scrapy.selector.Selector(response=None, text=None, type=None)
-#########################################
-Selector 的实例是对选择某些内容响应的封装。
-response 是 HtmlResponse 或 XmlResponse 的一个对象，将被用来选择和提取数据。
-
-text 是在 response 不可用时的一个unicode字符串或utf-8编码的文字。将 text 和 response 一起使用是未定义行为。
-
-type 定义了选择器类型，可以是 "html", "xml" or None (默认).
-	如果 type 是 None ，选择器会根据 response 类型(参见下面)自动选择最佳的类型，或者在和 text 一起使用时，默认为 "html" 。
-	如果 type 是 None ，并传递了一个 response ，选择器类型将从response类型中推导如下：
-		"html" for HtmlResponse type
-		"xml" for XmlResponse type
-		"html" for anything else
-	其他情况下，如果设定了 type ，选择器类型将被强制设定，而不进行检测。
-'''
 		for line in item['mhurl']:
 			startStr = 'var mhurl = "'
 			endStr = 'jpg'
@@ -98,14 +131,7 @@ type 定义了选择器类型，可以是 "html", "xml" or None (默认).
 				item['mhurl'] = line[startIdx+13:endIdx+3]
 				break
 
-		'''
-		with open(dirname + '/' + filename, 'wb') as f:
-			# for line in response.body:
-			# 	print line
-			f.write(response.body)
-		'''
-
-
+		# Servers url that store images after 2015
 		if (item['mhurl'].find('2015') == -1 or item['mhurl'].find('2016') == -1 or item['mhurl'].find('2017') == -1):
 			item['mhss'] = u'p1.xiaoshidi.net'
 
@@ -125,16 +151,18 @@ type 定义了选择器类型，可以是 "html", "xml" or None (默认).
 
 		urllib.urlretrieve(src, dst)
 		
-		# 怕太频繁的要求会被挡IP
-		time.sleep(0.3)
+		# 怕太频繁的要求会被挡IP, has been achieved in the setting.py
+		# DOWNLOAD_DELAY = 0.25
+		# time.sleep(0.3)
 
 		return item
-'''
-		urlList = response.xpath('//div[@class="navigation"]/a/@href').extract()
-		for url in urlList:
-			self.log("[XXXXXXXX]: %s" % url)
-			yield Request(url, callback=self.parse)
-'''
+		# TODO: Use yield instead of fixing the range of number page to query in here
+		# Reference: http://www.jianshu.com/p/b39dab3d56bb
+		#######################################
+		# urlList = response.xpath('//div[@class="navigation"]/a/@href').extract()
+		# for url in urlList:
+		# 	self.log("[XXXXXXXX]: %s" % url)
+		# 	yield Request(url=parse.urljoin(response.url, article), callback=self.parse)
 
 
 '''
