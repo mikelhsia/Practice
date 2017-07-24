@@ -30,6 +30,7 @@ import urllib
 import time
 
 from fzdm.items import FzdmItem
+# from scrapy.http import Request
 
 class fzdmSpider(scrapy.Spider):
 	# 必须定义name，即爬虫名，如果没有name，会报错。因为源码中是定义为必须的。
@@ -46,6 +47,10 @@ class fzdmSpider(scrapy.Spider):
 	for x in range(numChap):
 		start_urls.append("http://manhua.fzdm.com/%d/%d/index.html" % (manga, targetChap+x))
 		print "http://manhua.fzdm.com/%d/%d/index.html" % (manga, targetChap+x)
+
+		# pageList = response.xpath('//div[@class="navigation"]/a/@href').extract()
+
+		# for y in range(len(pageList)):
 		for y in range(22):
 			start_urls.append("http://manhua.fzdm.com/%d/%d/index_%d.html" % (manga, targetChap+x, y+1))
 			print "http://manhua.fzdm.com/%d/%d/index_%d.html" % (manga, targetChap+x, y+1)
@@ -103,7 +108,12 @@ class fzdmSpider(scrapy.Spider):
 		urllib.urlretrieve(src, dst)
 		
 		# 怕太频繁的要求会被挡IP
+		######################
 		# time.sleep(0.3)
+
+		# all_urls = response.xpath('//div[@class="navigation"]/a/@href').extract()
+		# for url in all_urls:
+		# 	yield Request(url, callback=self.parse)
 
 		'''
 		ab_src = "http://www.xiaohuar.com" + src[0]#相对路径拼接
@@ -112,7 +122,7 @@ class fzdmSpider(scrapy.Spider):
 		urllib.urlretrieve(ab_src, file_path)
 		注：urllib.urlretrieve(ab_src, file_path) ，接收文件路径和需要保存的路径，会自动去文件路径下载并保存到我们指定的本地路径。
 		'''
-		return item
+		# return item
 
 
 
@@ -121,21 +131,13 @@ class fzdmSpider(scrapy.Spider):
 上述代码仅仅实现了一个url的爬取，如果该url的爬取的内容中包含了其他url，而我们也想对其进行爬取，那么如何实现递归爬取网页呢？
 
 示例代码：
-<<<<<<< HEAD
- # 获取所有的url，继续访问，并在其中寻找相同的url
+# 获取所有的url，继续访问，并在其中寻找相同的url
+# 即通过yield生成器向每一个url发送request请求，并执行返回函数parse
         all_urls = hxs.select('//a/@href').extract()
         for url in all_urls:
             if url.startswith('http://www.xiaohuar.com/list-1-'):
                 yield Request(url, callback=self.parse)
 即通过yield生成器向每一个url发送request请求，并执行返回函数parse，从而递归获取校花图片和校花姓名学校等信息。
 注：可以修改settings.py 中的配置文件，以此来指定“递归”的层数，如： DEPTH_LIMIT = 1
-=======
-# 获取所有的url，继续访问，并在其中寻找相同的url
-# 即通过yield生成器向每一个url发送request请求，并执行返回函数parse
-	all_urls = hxs.select('//a/@href').extract()
-	for url in all_urls:
-		if url.startswith('http://www.xiaohuar.com/list-1-'):
-			yield Request(url, callback=self.parse)
->>>>>>> e5b2ddf90d855ccd489bed6c82c495feeb22e625
 '''
 
