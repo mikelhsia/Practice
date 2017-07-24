@@ -46,14 +46,13 @@ class fzdmSpider(scrapy.Spider):
 	start_urls = []
 	for x in range(numChap):
 		start_urls.append("http://manhua.fzdm.com/%d/%d/index.html" % (manga, targetChap+x))
-		print "http://manhua.fzdm.com/%d/%d/index.html" % (manga, targetChap+x)
+		# print "http://manhua.fzdm.com/%d/%d/index.html" % (manga, targetChap+x)
 
 		# pageList = response.xpath('//div[@class="navigation"]/a/@href').extract()
-
 		# for y in range(len(pageList)):
 		for y in range(22):
 			start_urls.append("http://manhua.fzdm.com/%d/%d/index_%d.html" % (manga, targetChap+x, y+1))
-			print "http://manhua.fzdm.com/%d/%d/index_%d.html" % (manga, targetChap+x, y+1)
+			# print "http://manhua.fzdm.com/%d/%d/index_%d.html" % (manga, targetChap+x, y+1)
 
 
 	def parse(self, response):
@@ -69,10 +68,25 @@ class fzdmSpider(scrapy.Spider):
 
 		item = FzdmItem()
 		item['name'] = response.xpath('//title/text()').extract()
-		item['mhss'] = u'p1.xiaoshidi.net'
+		item['mhss'] = u's1.nb-pintai.com'
 		item['mhurl'] = response.xpath('//script[@type="text/javascript"]/text()').extract()
-		# print type(item['mhurl']) is a list
 
+'''
+class scrapy.selector.Selector(response=None, text=None, type=None)
+#########################################
+Selector 的实例是对选择某些内容响应的封装。
+response 是 HtmlResponse 或 XmlResponse 的一个对象，将被用来选择和提取数据。
+
+text 是在 response 不可用时的一个unicode字符串或utf-8编码的文字。将 text 和 response 一起使用是未定义行为。
+
+type 定义了选择器类型，可以是 "html", "xml" or None (默认).
+	如果 type 是 None ，选择器会根据 response 类型(参见下面)自动选择最佳的类型，或者在和 text 一起使用时，默认为 "html" 。
+	如果 type 是 None ，并传递了一个 response ，选择器类型将从response类型中推导如下：
+		"html" for HtmlResponse type
+		"xml" for XmlResponse type
+		"html" for anything else
+	其他情况下，如果设定了 type ，选择器类型将被强制设定，而不进行检测。
+'''
 		for line in item['mhurl']:
 			startStr = 'var mhurl = "'
 			endStr = 'jpg'
@@ -91,14 +105,18 @@ class fzdmSpider(scrapy.Spider):
 			f.write(response.body)
 		'''
 
+
+		if (item['mhurl'].find('2015') == -1 or item['mhurl'].find('2016') == -1 or item['mhurl'].find('2017') == -1):
+			item['mhss'] = u'p1.xiaoshidi.net'
+
+		# Creating all the folder and file necessary
+		# filename = response.url.split("/")[-1]
 		src = "http://%s/%s" % (item['mhss'],item['mhurl'])
 		fileName = item['mhurl'].replace('/','-')
 		dirName = response.url.split("/")[-2]
 		filePath = "%s/%s" % (os.getcwd(), dirName)
 		dst = os.path.join(filePath, fileName)
 
-		# Creating all the folder and file necessary
-		# filename = response.url.split("/")[-1]
 		try:
 			os.mkdir(dirName)
 		except:
@@ -108,36 +126,38 @@ class fzdmSpider(scrapy.Spider):
 		urllib.urlretrieve(src, dst)
 		
 		# 怕太频繁的要求会被挡IP
-		######################
-		# time.sleep(0.3)
+		time.sleep(0.3)
 
-		# all_urls = response.xpath('//div[@class="navigation"]/a/@href').extract()
-		# for url in all_urls:
-		# 	yield Request(url, callback=self.parse)
-
-		'''
-		ab_src = "http://www.xiaohuar.com" + src[0]#相对路径拼接
-		file_name = "%s_%s.jpg" % (school[0].encode('utf-8'), name[0].encode('utf-8')) #文件名，因为python27默认编码格式是unicode编码，因此我们需要编码成utf-8
-		file_path = os.path.join("/Users/wupeiqi/PycharmProjects/beauty/pic", file_name)
-		urllib.urlretrieve(ab_src, file_path)
-		注：urllib.urlretrieve(ab_src, file_path) ，接收文件路径和需要保存的路径，会自动去文件路径下载并保存到我们指定的本地路径。
-		'''
-		# return item
+		return item
+'''
+		urlList = response.xpath('//div[@class="navigation"]/a/@href').extract()
+		for url in urlList:
+			self.log("[XXXXXXXX]: %s" % url)
+			yield Request(url, callback=self.parse)
+'''
 
 
+'''
+下载档案
+ab_src = "http://www.xiaohuar.com" + src[0]#相对路径拼接
+file_name = "%s_%s.jpg" % (school[0].encode('utf-8'), name[0].encode('utf-8')) #文件名，因为python27默认编码格式是unicode编码，因此我们需要编码成utf-8
+file_path = os.path.join("/Users/wupeiqi/PycharmProjects/beauty/pic", file_name)
+urllib.urlretrieve(ab_src, file_path)
+注：urllib.urlretrieve(ab_src, file_path) ，接收文件路径和需要保存的路径，会自动去文件路径下载并保存到我们指定的本地路径。
+'''
 
 '''
 5.递归爬取网页
 上述代码仅仅实现了一个url的爬取，如果该url的爬取的内容中包含了其他url，而我们也想对其进行爬取，那么如何实现递归爬取网页呢？
 
 示例代码：
-# 获取所有的url，继续访问，并在其中寻找相同的url
-# 即通过yield生成器向每一个url发送request请求，并执行返回函数parse
+获取所有的url，继续访问，并在其中寻找相同的url
+即通过yield生成器向每一个url发送request请求，并执行返回函数parse，
+从而递归获取校花图片和校花姓名学校等信息。
         all_urls = hxs.select('//a/@href').extract()
         for url in all_urls:
             if url.startswith('http://www.xiaohuar.com/list-1-'):
                 yield Request(url, callback=self.parse)
-即通过yield生成器向每一个url发送request请求，并执行返回函数parse，从而递归获取校花图片和校花姓名学校等信息。
 注：可以修改settings.py 中的配置文件，以此来指定“递归”的层数，如： DEPTH_LIMIT = 1
 '''
 
