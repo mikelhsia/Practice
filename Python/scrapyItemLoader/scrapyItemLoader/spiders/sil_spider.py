@@ -22,6 +22,8 @@ class SilSpiderSpider(scrapy.Spider):
 
 	def parse(self, response):
 		urlList = response.xpath('//div[@class="navigation"]/a/@href').extract()
+		# To pop the last url item, which is duplicate with the index_1.html
+		urlList.pop()
 
 		for url in urlList:
 			# 加了dont_filter=True的参数就完全可以用了！Why!?
