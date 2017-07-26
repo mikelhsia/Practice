@@ -14,5 +14,7 @@ import scrapy
 
 class ScrapyitemloaderItem(scrapy.Item):
 	# chapNum  = scrapy.Field()
-	theScript = scrapy.Field()
+	imgFileName = scrapy.Field()
+	imgSrc = scrapy.Field()
+	imgDst = scrapy.Field()
 	pass

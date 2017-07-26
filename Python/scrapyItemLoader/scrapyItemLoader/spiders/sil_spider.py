@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import urlparse
+import os
 
 # 已经load了
 # from scrapy.contrib.loader import ItemLoader
@@ -27,8 +28,11 @@ class SilSpiderSpider(scrapy.Spider):
 
 		for url in urlList:
 			# 加了dont_filter=True的参数就完全可以用了！Why!?
-			yield Request(url=urlparse.urljoin(response.url, url), callback=self.parse_image, dont_filter=True)
-			self.log("[URL List Yield]: %s" % urlparse.urljoin(response.url, url))
+			# meta字段是传递值的方法。在调试时返回的response中会出现meta的内容，它是一个字典，
+			# 故在传递时可以直接通过 response.meta['front_image_url']进行引用
+			# (也可以使用get的方法，附默认值防止出现异常）
+			yield Request(url=urlparse.urljoin(response.url, url), callback=self.parse_detail, dont_filter=True)
+			# self.log("[URL List Yield]: %s" % urlparse.urljoin(response.url, url))
 
 		'''
 		5.递归爬取网页
@@ -41,8 +45,32 @@ class SilSpiderSpider(scrapy.Spider):
 		注：可以修改settings.py 中的配置文件，以此来指定“递归”的层数，如： DEPTH_LIMIT = 1
 		'''
 
-	def parse_image(self, response):
-		print "[Response URL]: " , response.url
+	def parse_detail(self, response):
+		# print "[Response URL]: " , response.url
+		item = ScrapyitemloaderItem()
+
+		infoScript = response.xpath('//script[@type="text/javascript"]/text()').extract()
+
+		for line in infoScript:
+			startStr = 'var mhurl = "'
+			endStr = 'jpg'
+			startIdx = line.find(startStr)
+			endIdx = line.find(endStr)
+			if startIdx > 0:
+				item['imgFileName'] = line[startIdx+13:endIdx+3]
+				break
+
+		if (item['imgFileName'].find('2015') != -1 or item['imgFileName'].find('2016') != -1 or item['imgFileName'].find('2017') != -1):
+			item['imgSrc'] = "http://%s/%s" % (u"p1.xiaoshidi.net", item['imgFileName'])
+		else:
+			item['imgSrc'] = "http://%s/%s" % (u"s1.nb-pintai.com", item['imgFileName'])
+
+		item['imgFileName'] = item['imgFileName'].replace('/','-')
+
+		item['imgDst'] = "%s/%s" % (os.getcwd(), response.url.split("/")[-2])
+
+		yield item
+
 		# itemLoader = ItemLoader(item=ScrapyitemloaderItem, response=response)
 		# itemLoader.add_xpath('theScript', '//script[@type="text/javascript"]/text()')
 
