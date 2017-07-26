@@ -12,17 +12,20 @@ class SilSpiderSpider(scrapy.Spider):
 	name = 'sil_spider'
 	allowed_domains = ["manhua.fzdm.com/"]
 
-	manga      = int(raw_input("Input Manga code: "))
+	manga      = int(raw_input("食戟之靈 - 58\t七原罪 - 56\n猎人 - 10\t东京RE - 117\n进击 - 39\t英雄学院 - 131\nInput Manga code: "))
 	targetChap = int(raw_input("Input start downloading chapter: "))
 	numChap    = int(raw_input("How many chapters you want to download: "))
 
 	start_urls = []
 	for x in range(numChap):
-		start_urls.append("http://manhua.fzdm.com/%d/%d/index.html" % (manga, targetChap+x))
-		print "http://manhua.fzdm.com/%d/%d/index_1.html" % (manga, targetChap+x)
+		start_urls.append("http://manhua.fzdm.com/%d/%d/" % (manga, targetChap+x))
+		# print "http://manhua.fzdm.com/%d/%d/" % (manga, targetChap+x)
 
 	def parse(self, response):
 		urlList = response.xpath('//div[@class="navigation"]/a/@href').extract()
+		# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		# next_list = response.xpath('//a[@id="mhona"]/@href').extract()
+		# <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 		# To pop the last url item, which is duplicate with the index_1.html
 		urlList.pop()
 		print urlList
@@ -33,7 +36,7 @@ class SilSpiderSpider(scrapy.Spider):
 			# 故在传递时可以直接通过 response.meta['front_image_url']进行引用
 			# (也可以使用get的方法，附默认值防止出现异常）
 			yield Request(url=urlparse.urljoin(response.url, url), callback=self.parse_detail, dont_filter=True)
-			self.log("[URL List Yield]: %s" % urlparse.urljoin(response.url, url))
+			# self.log("[URL List Yield]: %s" % urlparse.urljoin(response.url, url))
 
 		'''
 		5.递归爬取网页
