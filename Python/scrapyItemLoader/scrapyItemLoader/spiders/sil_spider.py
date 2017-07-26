@@ -19,12 +19,13 @@ class SilSpiderSpider(scrapy.Spider):
 	start_urls = []
 	for x in range(numChap):
 		start_urls.append("http://manhua.fzdm.com/%d/%d/index.html" % (manga, targetChap+x))
-		print "http://manhua.fzdm.com/%d/%d/index.html" % (manga, targetChap+x)
+		print "http://manhua.fzdm.com/%d/%d/index_1.html" % (manga, targetChap+x)
 
 	def parse(self, response):
 		urlList = response.xpath('//div[@class="navigation"]/a/@href').extract()
 		# To pop the last url item, which is duplicate with the index_1.html
 		urlList.pop()
+		print urlList
 
 		for url in urlList:
 			# 加了dont_filter=True的参数就完全可以用了！Why!?
@@ -32,7 +33,7 @@ class SilSpiderSpider(scrapy.Spider):
 			# 故在传递时可以直接通过 response.meta['front_image_url']进行引用
 			# (也可以使用get的方法，附默认值防止出现异常）
 			yield Request(url=urlparse.urljoin(response.url, url), callback=self.parse_detail, dont_filter=True)
-			# self.log("[URL List Yield]: %s" % urlparse.urljoin(response.url, url))
+			self.log("[URL List Yield]: %s" % urlparse.urljoin(response.url, url))
 
 		'''
 		5.递归爬取网页
@@ -50,7 +51,6 @@ class SilSpiderSpider(scrapy.Spider):
 		item = ScrapyitemloaderItem()
 
 		infoScript = response.xpath('//script[@type="text/javascript"]/text()').extract()
-
 		for line in infoScript:
 			startStr = 'var mhurl = "'
 			endStr = 'jpg'
@@ -66,14 +66,7 @@ class SilSpiderSpider(scrapy.Spider):
 			item['imgSrc'] = "http://%s/%s" % (u"s1.nb-pintai.com", item['imgFileName'])
 
 		item['imgFileName'] = item['imgFileName'].replace('/','-')
-
 		item['imgDst'] = "%s/%s" % (os.getcwd(), response.url.split("/")[-2])
 
 		yield item
-
-		# itemLoader = ItemLoader(item=ScrapyitemloaderItem, response=response)
-		# itemLoader.add_xpath('theScript', '//script[@type="text/javascript"]/text()')
-
-		# return itemLoader.load_item()
-
 

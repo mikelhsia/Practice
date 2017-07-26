@@ -68,8 +68,14 @@ DEPTH_LIMIT = 1
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'scrapyItemLoader.pipelines.ScrapyitemloaderPipeline': 300,
+   'scrapyItemLoader.pipelines.ScrapyitemloaderPipeline': 300, #后面的数字代表执行优先级 ，当执行pipeine的时候会按照数字由小到大执行
 }
+# IMAGES_URLS_FIELD ="image_url"  #image_url是在items.py中配置的网络爬取得图片地址 #配置保存本地的地址
+# project_dir=os.path.abspath(os.path.dirname(__file__))  #获取当前爬虫项目的绝对路径
+# IMAGES_STORE=os.path.join(project_dir,'images')  #组装新的图片路径
+# 　还有很多设置有特殊需要的话可以用哦 （详情可以去imagepipeine源码查看）
+#    IMAGES_MIN_HEIGHT=100   #设定下载图片的最小高度
+#    IMAGES_MIN_WIDTH=100　　#设定下载图片的最小宽度
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html

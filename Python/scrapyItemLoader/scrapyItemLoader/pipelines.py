@@ -12,10 +12,6 @@ class ScrapyitemloaderPipeline(object):
 	def process_item(self, item, spider):
 
 		# Creating all the folder and file necessary
-		# src = "http://%s/%s" % (item['mhss'],item['mhurl'])
-		# fileName = item['mhurl'].replace('/','-')
-		# dirName = response.url.split("/")[-2]
-		# filePath = "%s/%s" % (os.getcwd(), dirName)
 		dst = os.path.join(item['imgDst'], item['imgFileName'])
 
 		try:
