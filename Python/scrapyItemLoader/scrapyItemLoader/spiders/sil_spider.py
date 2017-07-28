@@ -3,8 +3,6 @@ import scrapy
 import urlparse
 import os
 
-# 已经load了
-# from scrapy.contrib.loader import ItemLoader
 from scrapyItemLoader.items import ScrapyitemloaderItem
 from scrapy.http import Request
 
@@ -16,10 +14,10 @@ class SilSpiderSpider(scrapy.Spider):
 	targetChap = int(raw_input("Input start downloading chapter: "))
 	numChap    = int(raw_input("How many chapters you want to download: "))
 
-	start_urls = []
-	for x in range(numChap):
-		start_urls.append("http://manhua.fzdm.com/%d/%d/" % (manga, targetChap+x))
-		# print "http://manhua.fzdm.com/%d/%d/" % (manga, targetChap+x)
+	start_urls = ["http://manhua.fzdm.com/%d/%d/" % (manga, chap) for chap in xrange(targetChap, targetChap+numChap)]
+	# for x in range(numChap):
+	# 	start_urls.append("http://manhua.fzdm.com/%d/%d/" % (manga, targetChap+x))
+	# 	print "http://manhua.fzdm.com/%d/%d/" % (manga, targetChap+x)
 
 	def parse(self, response):
 		# meta字段是传递值的方法。在调试时返回的response中会出现meta的内容，它是一个字典，
@@ -43,7 +41,6 @@ class SilSpiderSpider(scrapy.Spider):
 
 
 	def parse_detail(self, response):
-		# print "[Response URL]: " , response.url
 		item = ScrapyitemloaderItem()
 
 		infoScript = response.xpath('//script[@type="text/javascript"]/text()').extract()
