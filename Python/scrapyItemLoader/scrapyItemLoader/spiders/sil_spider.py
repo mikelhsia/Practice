@@ -27,6 +27,13 @@ class SilSpiderSpider(scrapy.Spider):
 		# self.log("1. [URL Parsing and Downloading Image]: %s" % response.url)
 		yield Request(url=response.url, callback=self.parse_detail, dont_filter=True)
 
+		## We want to inspect one specific response
+		# 您可以点击Ctrl-D(Windows下Ctrl-Z)来退出终端
+		# 注意: 由于该终端屏蔽了Scrapy引擎，您在这个终端中不能使用 fetch 快捷命令(shortcut)。 
+		# 当您离开终端时，spider会从其停下的地方恢复爬取，正如上面显示的那样。
+		#############################################
+		# scrapy.shell.inspect_response(response, self)
+
 		try:
 			next_link = response.xpath(u'//a[contains(text(),"下一页")]/@href').extract().pop()
 			# self.log("2. [URL Parsing - Next link]: %s" % next_link)
