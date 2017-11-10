@@ -1,0 +1,236 @@
+/***************************************
+
+INSTRUCTIONS
+
+Use following the classes:
+1.  .btn                    [ mandatory ]
+        Default button styles
+2.  theme specific class    [ mandatory ]
+        ( Ex: .btn-green )
+3.  .outline                [ optional ]
+4.  size modifier           [ optional ]
+        ( Ex: .btn-lg )
+5.  .btn-full               [ optional ]
+        100% width
+
+Examples
+1.  <button class="btn btn-green btn-xlg btn-full"></button>
+1.  <button class="btn btn-brown outline btn-xs"></button>
+
+***************************************/
+
+/***************************************
+BOOTSTRAP DEFAULT OVERRIDES
+***************************************/
+
+.input-group-lg>.input-group-btn>.btn,
+.btn {
+    .border-radius(20px);
+    padding: 2px 8px;
+    border-width: 1px;
+    text-transform: uppercase;
+    font-size: @font-size-sm;
+    line-height: 1.2;
+    min-width: 50px;
+    height: auto;
+    outline: initial;
+    font-weight: normal;
+    min-height: 24px;
+
+    span {
+        font-size: inherit !important;
+    }
+
+    &:active,
+    &.active {
+        .box-shadow(none);
+    }
+
+    &:focus {
+        outline: initial;
+    }
+
+    &.disabled,
+    &[disabled],
+    fieldset[disabled] & {
+        background: @color-disable !important;
+        border-color: @color-disable !important;
+        color: darken(@color-disable, 20%) !important;
+        opacity: 1 !important;
+    }
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+    &.btn-full {
+        width: 100%;
+    }
+}
+
+/***************************************
+THEME SPECIFIC BUTTONS
+***************************************/
+
+// Color of the button text [ CAN NOT BE INSIDE THE FUNCTIONS ]
+@text-color: #fff;
+
+.createButton(dark; @color) {
+    background: @color;
+    border-color: @color;
+    color: @text-color;
+    &:hover,
+    &:focus {
+        background-color: darken(@color, 10%);
+        border-color: darken(@color, 10%);
+        color: @text-color;
+    }
+    &.outline {
+        background: transparent;
+        border-color: @color;
+        color: @color;
+        &:hover,
+        &:focus {
+            background: @color;
+            border-color: @color;
+            color: @text-color;
+        }
+    }
+}
+
+.createButton(light; @color) {
+    background: @color;
+    border-color: @color;
+    color: @text-color;
+    &:hover,
+    &:focus {
+        background-color: lighten(@color, 10%);
+        border-color: lighten(@color, 10%);
+        color: @text-color;
+    }
+
+    &.outline {
+        background: transparent;
+        border-color: @color;
+        color: @color;
+        &:hover,
+        &:focus {
+            background: @color;
+            border-color: @color;
+            color: @text-color;
+        }
+    }
+}
+
+// Determines whether the hover effect uses a lighter or darker version of the base color
+@hover-dark: dark;
+@hover-light: light;
+
+
+/***************************************
+BUTTON SIZE MODIFIERS
+***************************************/
+
+// Extra Small Button
+.btn-xs {
+    min-width: 50px;
+    font-size: @font-size-xs;
+    line-height: 1.5;
+    padding: 2px 8px;
+}
+
+// Small Button
+.btn-sm,
+.btn-md {
+    min-width: 50px;
+    font-size: @font-size-sm;
+    line-height: 1.7;
+}
+
+// Large Button
+.btn-lg {
+    //padding: 6px 14px;
+    min-width: 70px;
+    font-size: @font-size-lg;
+    line-height: 1.7;
+}
+
+// Extra Large Button
+.btn-xlg {
+    min-width: 100px;
+    padding: 4px 19px;
+    font-size: @font-size-xl;
+    line-height: 1.5;
+}
+
+// Full Width Button
+.btn-full {
+    display: block;
+    width: 100%;
+    + .btn-full {
+      margin-top: 5px;
+    }
+}
+
+/***************************************
+ICON BUTTONS
+***************************************/
+
+// Font Icon Button
+.btn-icon {
+    font-size: @font-size-sm;
+    color: @color-dark;
+    &:after,
+    &:before {
+        color: @color-dark;
+    }
+    &:hover,
+    &:active,
+    &:focus {
+        background-color: @color-secondary;
+        border-color: @color-secondary;
+    }
+
+    // Custom Icons
+    .wishlist-added {
+        color: red;
+    }
+}
+
+/***************************************
+DEFAULT TEXT LINKS
+***************************************/
+
+a,
+.btn-link {
+    color: @color-dark;
+    font-size: @font-size-xs;
+    border: none;
+    background: transparent;
+    text-decoration: none;
+    text-transform: inherit;
+    outline: 0;
+    &:hover,
+    &:focus {
+        color: @color-secondary;
+        text-decoration: none;
+    }
+    &[disabled],
+    fieldset[disabled] & {
+        color: @color-disable;
+        &:hover,
+        &:focus {
+            color: @color-disable;
+        }
+    }
+}
+
+/***************************************
+Execute
+***************************************/
+
+// Primary Button - GREEN
+.btn-hippo {.createButton(@hover-dark; #2c276a);}
+
+// Secondary Button - Brown
+.btn-crate {.createButton(@hover-light; #dcefe9)}

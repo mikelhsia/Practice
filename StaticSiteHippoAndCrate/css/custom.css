@@ -1,0 +1,506 @@
+/*
+Hippo n Crate - less
+V.Brand 2016 TMO
+*/
+/***************************************
+
+INSTRUCTIONS
+
+Use following the classes:
+1.  .btn                    [ mandatory ]
+        Default button styles
+2.  theme specific class    [ mandatory ]
+        ( Ex: .btn-green )
+3.  .outline                [ optional ]
+4.  size modifier           [ optional ]
+        ( Ex: .btn-lg )
+5.  .btn-full               [ optional ]
+        100% width
+
+Examples
+1.  <button class="btn btn-green btn-xlg btn-full"></button>
+1.  <button class="btn btn-brown outline btn-xs"></button>
+
+***************************************/
+/***************************************
+BOOTSTRAP DEFAULT OVERRIDES
+***************************************/
+.input-group-lg > .input-group-btn > .btn,
+.btn {
+  border-radius: 20px;
+  -o-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  padding: 2px 8px;
+  border-width: 1px;
+  text-transform: uppercase;
+  font-size: 16px;
+  line-height: 1.2;
+  min-width: 50px;
+  height: auto;
+  outline: initial;
+  font-weight: normal;
+  min-height: 24px;
+}
+.input-group-lg > .input-group-btn > .btn span,
+.btn span {
+  font-size: inherit !important;
+}
+.input-group-lg > .input-group-btn > .btn:active,
+.btn:active,
+.input-group-lg > .input-group-btn > .btn.active,
+.btn.active {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -o-border-radius: none;
+  -webkit-box-shadow: none;
+}
+.input-group-lg > .input-group-btn > .btn:focus,
+.btn:focus {
+  outline: initial;
+}
+.input-group-lg > .input-group-btn > .btn.disabled,
+.btn.disabled,
+.input-group-lg > .input-group-btn > .btn[disabled],
+.btn[disabled],
+fieldset[disabled] .input-group-lg > .input-group-btn > .btn,
+fieldset[disabled] .btn {
+  background: #dddddd !important;
+  border-color: #dddddd !important;
+  color: #aaaaaa !important;
+  opacity: 1 !important;
+}
+input[type="submit"].btn-full,
+input[type="reset"].btn-full,
+input[type="button"].btn-full {
+  width: 100%;
+}
+/***************************************
+THEME SPECIFIC BUTTONS
+***************************************/
+/***************************************
+BUTTON SIZE MODIFIERS
+***************************************/
+.btn-xs {
+  min-width: 50px;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 2px 8px;
+}
+.btn-sm,
+.btn-md {
+  min-width: 50px;
+  font-size: 16px;
+  line-height: 1.7;
+}
+.btn-lg {
+  min-width: 70px;
+  font-size: 20px;
+  line-height: 1.7;
+}
+.btn-xlg {
+  min-width: 100px;
+  padding: 4px 19px;
+  font-size: 28px;
+  line-height: 1.5;
+}
+.btn-full {
+  display: block;
+  width: 100%;
+}
+.btn-full + .btn-full {
+  margin-top: 5px;
+}
+/***************************************
+ICON BUTTONS
+***************************************/
+.btn-icon {
+  font-size: 16px;
+  color: #000000;
+}
+.btn-icon:after,
+.btn-icon:before {
+  color: #000000;
+}
+.btn-icon:hover,
+.btn-icon:active,
+.btn-icon:focus {
+  background-color: #6cc1c1;
+  border-color: #6cc1c1;
+}
+.btn-icon .wishlist-added {
+  color: red;
+}
+/***************************************
+DEFAULT TEXT LINKS
+***************************************/
+a,
+.btn-link {
+  color: #000000;
+  font-size: 14px;
+  border: none;
+  background: transparent;
+  text-decoration: none;
+  text-transform: inherit;
+  outline: 0;
+}
+a:hover,
+.btn-link:hover,
+a:focus,
+.btn-link:focus {
+  color: #6cc1c1;
+  text-decoration: none;
+}
+a[disabled],
+.btn-link[disabled],
+fieldset[disabled] a,
+fieldset[disabled] .btn-link {
+  color: #dddddd;
+}
+a[disabled]:hover,
+.btn-link[disabled]:hover,
+fieldset[disabled] a:hover,
+fieldset[disabled] .btn-link:hover,
+a[disabled]:focus,
+.btn-link[disabled]:focus,
+fieldset[disabled] a:focus,
+fieldset[disabled] .btn-link:focus {
+  color: #dddddd;
+}
+/***************************************
+Execute
+***************************************/
+.btn-hippo {
+  background: #2c276a;
+  border-color: #2c276a;
+  color: #ffffff;
+}
+.btn-hippo:hover,
+.btn-hippo:focus {
+  background-color: #1d1945;
+  border-color: #1d1945;
+  color: #ffffff;
+}
+.btn-hippo.outline {
+  background: transparent;
+  border-color: #2c276a;
+  color: #2c276a;
+}
+.btn-hippo.outline:hover,
+.btn-hippo.outline:focus {
+  background: #2c276a;
+  border-color: #2c276a;
+  color: #ffffff;
+}
+.btn-crate {
+  background: #dcefe9;
+  border-color: #dcefe9;
+  color: #ffffff;
+}
+.btn-crate:hover,
+.btn-crate:focus {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+.btn-crate.outline {
+  background: transparent;
+  border-color: #dcefe9;
+  color: #dcefe9;
+}
+.btn-crate.outline:hover,
+.btn-crate.outline:focus {
+  background: #dcefe9;
+  border-color: #dcefe9;
+  color: #ffffff;
+}
+body {
+  font-family: STHeiti, Microsoft YaHei, STXihei, Helvetica, sans-serif;
+}
+.circle-icon {
+  border: 2px solid #2c276a;
+  color: #2c276a;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  line-height: 40px;
+  margin: 0 auto;
+}
+.circle-icon:hover {
+  border: 2px solid #3b358f;
+  color: #3b358f;
+}
+#main-page {
+  margin-top: 0px;
+}
+#main-page.page-help h1,
+#main-page.page-help h2,
+#main-page.page-help h3,
+#main-page.page-help h4,
+#main-page.page-help h5,
+#main-page.page-help h6 {
+  color: #2c276a;
+  font-weight: bold;
+}
+#main-page.page-help .help-title {
+  color: #2c276a;
+  font-weight: bold;
+  margin: 100px 0 0 0;
+}
+#main-page.page-help .help-text {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+#main-page.page-brushplan {
+  margin-top: 50px;
+  margin-bottom: 60px;
+}
+#main-page.page-brushplan .brushplan-header {
+  min-height: 300px;
+  color: #2c276a;
+  font-weight: bold;
+  background: #dcefe9;
+}
+#main-page.page-brushplan .brushplan-block2 {
+  background: #fafafc;
+}
+@media (max-width: 768px) {
+  #main-page {
+    margin-top: 50px;
+  }
+}
+#main-page .section-block {
+  padding: 50px 0;
+}
+#main-page .section-block .watermark {
+  width: 15%;
+  position: absolute;
+  right: 20px;
+  top: 200px;
+  /* alternative size */
+  /* alternative size */
+  /* alternative size */
+}
+@media (max-width: 768px) {
+  #main-page .section-block .watermark {
+    top: 150px;
+  }
+}
+@media (min-width: 768px) {
+  #main-page .section-block .watermark {
+    top: 300px;
+  }
+}
+@media (min-width: 840px) {
+  #main-page .section-block .watermark {
+    top: 350px;
+  }
+}
+@media (min-width: 992px) {
+  #main-page .section-block .watermark {
+    top: 400px;
+  }
+}
+@media (min-width: 1040px) {
+  #main-page .section-block .watermark {
+    top: 485px;
+  }
+}
+@media (min-width: 1200px) {
+  #main-page .section-block .watermark {
+    top: 550px;
+  }
+}
+@media (min-width: 1400px) {
+  #main-page .section-block .watermark {
+    top: 650px;
+  }
+}
+@media (max-width: 768px) {
+  #main-page .section-block {
+    padding: 20px 0;
+  }
+}
+#main-page .section-block h2 {
+  color: #666;
+  font-weight: lighter;
+}
+#main-page .section-block h2.addBottom {
+  margin: 0 0 40px 0;
+}
+#main-page .section-block h3 {
+  color: #2c276a;
+  font-weight: lighter;
+  font-size: 24px;
+}
+#main-page .section-block h4 {
+  color: #2c276a;
+  font-weight: bold;
+  font-size: 24px;
+}
+.bg.lightblue {
+  background: #dcefe9;
+}
+.bg.darkblue {
+  background: #2c276a;
+}
+footer {
+  background: #fafafc;
+  padding: 30px 0;
+  margin-top: 20px;
+  color: #666;
+  min-height: 200px;
+}
+footer .social-icon {
+  background: #2c276a;
+  border-radius: 4px;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+}
+footer .social-icon:hover {
+  background: #3b358f;
+}
+footer .footer-text {
+  margin: 60px 0 0 0;
+}
+nav.navbar ul.nav.navbar-nav li {
+  background: #fff;
+}
+nav.navbar ul.nav.navbar-nav li a {
+  background: #fff;
+}
+nav.navbar ul.nav.navbar-nav li a:hover {
+  color: #2c276a;
+  border-bottom: 1px solid #fff;
+  /*background:@darkblue;*/
+}
+nav.navbar ul.nav.navbar-nav li a:hover .arrow-box {
+  display: block;
+}
+nav.navbar ul.nav.navbar-nav li a:hover.active {
+  background: #fff;
+}
+nav.navbar ul.nav.navbar-nav li a .arrow-box {
+  display: none;
+}
+nav.navbar ul.nav.navbar-nav li a.active {
+  color: #fff;
+  border-bottom: 1px solid #fff;
+  background: #2c276a;
+}
+nav.navbar ul.nav.navbar-nav li.active {
+  background: #fff;
+}
+nav.navbar ul.nav.navbar-nav li.active:hover {
+  color: #2c276a;
+  background: #fff;
+}
+nav.navbar ul.nav.navbar-nav li.active:hover .arrow-box {
+  display: block;
+}
+nav.navbar div .navbar-header a {
+  margin: 0;
+  padding: 0;
+}
+nav.navbar div .navbar-header a.navbar-brand img.logo {
+  margin: 2px 0;
+  max-height: 46px;
+}
+.sub-menu {
+  display: none;
+  background: #2c276a;
+  color: #fff;
+  height: 60px;
+  margin: 0 0 -10px 0;
+}
+.sub-menu ul {
+  padding: 0;
+  margin: 0;
+}
+.sub-menu ul li {
+  float: left;
+  list-style: none;
+  height: 60px;
+  padding: 0;
+  margin: 0;
+}
+.sub-menu ul li a {
+  height: 60px;
+  line-height: 60px;
+  color: #fff;
+  padding: 20px;
+  text-decoration: none;
+}
+.sub-menu ul li a:hover {
+  color: #2c276a;
+  background: #fff;
+}
+.sub-menu ul li:hover {
+  color: #2c276a;
+  background: #fff;
+}
+.sub-menu ul li:hover a {
+  color: #2c276a;
+  text-decoration: none;
+}
+.sub-menu ul li:hover a.option {
+  padding: 10px 20px;
+  margin: 10px 0 0 0;
+}
+.sub-menu ul li.active {
+  color: #2c276a;
+  background: #fff;
+}
+.sub-menu ul li.active a {
+  color: #2c276a;
+  text-decoration: none;
+}
+.sub-menu ul li.active a.option {
+  padding: 10px 20px;
+}
+.navbar-default {
+  background: #fff;
+  color: #666;
+  padding: 0;
+  -webkit-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.1);
+}
+.navbar-primary {
+  border-radius: 0px;
+  margin-bottom: 0;
+  background: #2c276a;
+  color: #fff;
+}
+.navbar-primary .container ul.nav.navbar-nav li a {
+  color: #fff;
+}
+.navbar-primary .container ul.nav.navbar-nav li a:hover .arrow-box {
+  display: block;
+}
+.navbar-primary .container ul.nav.navbar-nav li a .arrow-box {
+  display: none;
+}
+.block.text-block {
+  background: #dcefe9;
+  color: #2c276a;
+}
+.block.text-block h3 {
+  text-align: center;
+  line-height: 2em;
+  margin: 10px 0 30px 0;
+}
+.logo {
+  margin: 0;
+}
+@media (max-width: 768px) {
+  .logo {
+    margin: 0 0 0 20px;
+  }
+}
+/*# sourceMappingURL=custom.css.map */
