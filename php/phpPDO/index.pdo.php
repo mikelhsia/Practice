@@ -1,13 +1,27 @@
 <?php
 
+
 require('Task.php');
 require('index.function.php');
 require('index.layout.header.php');
 
 
-$conn = connectToDB();
+// $pdo = Connection::make();
+// $results = fetchAllPosts($pdo);
+// $query = new QueryBuilder($pdo);
 
-$results = fetchAllPosts($conn);
+$query = require('bootstrap.php');
+$results = $query->selectAll('posts', Task::class);
+
+// $results = $results.array_map(function ($result) {
+// 	$t = new Task();
+// 	$t->user_id = $result['user_id'];
+// 	$t->title = $result['title'];
+// 	$t->body = $result['body'];
+// 	$t->created_at = $result['created_at'];
+// 	return $t;
+// }, $results)
+
 dd($results);
 
 require('index.layout.bottom.php');
