@@ -12,6 +12,8 @@ require('index.layout.header.php');
 
 $query = require('bootstrap.php');
 $results = $query->selectAll('posts', Task::class);
+// If table name not exist
+// $results = $query->selectAll('123', Task::class);
 
 // $results = $results.array_map(function ($result) {
 // 	$t = new Task();
