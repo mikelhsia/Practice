@@ -54,9 +54,7 @@
 	echo $xml->heading . "<br>";
 	echo $xml->body . "<br>";
 	echo $xml->a12y;
-?>
-
-<?php
+	
 	// $xml=simplexml_load_file("note.xml");
 	echo "<br>" . $xml->getName() . "<br>";
 
