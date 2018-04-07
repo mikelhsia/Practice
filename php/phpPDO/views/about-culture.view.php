@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>About Culture</title>
-</head>
-<body>
+<?php
+	$title = "About culture";
+	require 'views/index.view.header.php';
+?>
 	<h3>About culture page</h3>
-</body>
-</html>
+<?php 
+	require 'views/index.view.bottom.php';
+?>	
+

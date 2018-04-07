@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Contact Us</title>
-</head>
-<body>
+<?php
+	$title = 'Contact us';	
+	require 'views/index.view.header.php';
+?>
 	<h3>Contact us page</h3>
-</body>
-</html>
+<?php 
+	require 'views/index.view.bottom.php';
+?>	

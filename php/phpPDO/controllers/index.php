@@ -1,19 +1,11 @@
 <?php
-
+$title = 'Homepage';
 
 require 'views/Task.php';
 require 'views/index.function.php';
 require 'views/index.view.header.php';
 
 ?>
-
-<div class="page-header">
-	<h2>Navigation</h2>
-	<ul>
-		<li> <a href='about'>About Us</a> </li>
-		<li> <a href='contact'>Contact Us</a> </li>
-	</ul>
-</div>
 
 <div class="page-header">
 	<h2>My Posts</h2>

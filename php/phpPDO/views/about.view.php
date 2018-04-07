@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>About Us</title>
-</head>
-<body>
+<?php
+	$title = 'About us';	
+	require 'views/index.view.header.php';
+?>
 	<h3>About us page by <?php echo $author; ?></h3>
-</body>
-</html>
+
+<?php 
+	require 'views/index.view.bottom.php';
+?>
