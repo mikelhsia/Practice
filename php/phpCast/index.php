@@ -12,4 +12,4 @@ require 'core/bootstrap.php';
 
 // Simplified version
 require Router::load('routes.php')
-	->redirect(Request::getUri());
+	->redirect(Request::getUri(), Request::getMethod());
