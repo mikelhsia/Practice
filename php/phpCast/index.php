@@ -1,5 +1,7 @@
 <?php
 
+// require the autoload file that composer created
+require 'vendor/autoload.php';
 require 'core/bootstrap.php';
 
 // var_dump($app);

@@ -1,8 +1,9 @@
 <?php
 $title = 'Homepage';
 
-require 'views/Task.php';
-require 'views/User.php';
+// Don't need these because composer
+//require 'views/Task.php';
+//require 'views/User.php';
 require 'views/index.function.php';
 require 'views/index.view.header.php';
 
@@ -39,7 +40,7 @@ require 'views/index.view.header.php';
 // $results = fetchAllPosts($pdo);
 // $query = new QueryBuilder($pdo);
 
-$results = $app['database']->selectAll('users', User::class);
+$results = App::get('database')->selectAll('users', User::class);
 // $results = $query->selectAll('posts', Task::class);
 // If table name not exist
 // $results = $query->selectAll('123', Task::class);

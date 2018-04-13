@@ -12,7 +12,7 @@
 
 $title = 'Names';
 
-$app['database']->insert('users', [
+App::get('database')->insert('users', [
     'name' => $_POST['name'],
     'password' => $_POST['name'],
     'email' => $_POST['gender'] . "@hotmail.com"
