@@ -21,8 +21,10 @@ $routes->define('contact', 'controllers/contact.php');
 
 
 
-$routes->get('', 'controllers/index.php');
-$routes->get('about', 'controllers/about.php');
-$routes->get('about/culture', 'controllers/about-culture.php');
-$routes->get('contact', 'controllers/contact.php');
-$routes->post('names', 'controllers/add-name.php');
+$routes->get('', 'PagesController@home');
+$routes->get('about', 'PagesController@about');
+$routes->get('about/culture', 'PagesController@about_culture');
+$routes->get('contact', 'PagesController@contact');
+$routes->get('users', 'UsersController@index');
+
+$routes->post('users', 'UsersController@store');

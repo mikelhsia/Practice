@@ -11,10 +11,12 @@ return array(
     'Composer\\Autoload\\ClassLoader' => $vendorDir . '/composer/ClassLoader.php',
     'Composer\\Autoload\\ComposerStaticInite542a95aa8a24be9a24b029ff35992ff' => $vendorDir . '/composer/autoload_static.php',
     'Connection' => $baseDir . '/core/database/Connection.php',
+    'PagesController' => $baseDir . '/controllers/PagesController.php',
     'QueryBuilder' => $baseDir . '/core/database/QueryBuilder.php',
     'Request' => $baseDir . '/core/Request.php',
     'Router' => $baseDir . '/core/Router.php',
     'Task' => $baseDir . '/views/Task.php',
     'User' => $baseDir . '/views/User.php',
+    'UsersController' => $baseDir . '/controllers/UsersController.php',
     'name' => $baseDir . '/controllers/name.php',
 );
