@@ -1,15 +1,18 @@
 <?php
-
 /**
  * Created by PhpStorm.
  * User: puppylpy
  * Date: 2018/4/15
  * Time: 10:44 PM
  */
+namespace App\Controllers;
+
+use App\Core\App;
+
 class UsersController
 {
     public function index () {
-        return views('users');
+        return view('users');
     }
 
     public function store () {

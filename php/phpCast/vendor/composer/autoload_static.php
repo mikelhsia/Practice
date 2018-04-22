@@ -7,19 +7,19 @@ namespace Composer\Autoload;
 class ComposerStaticInite542a95aa8a24be9a24b029ff35992ff
 {
     public static $classMap = array (
-        'App' => __DIR__ . '/../..' . '/core/App.php',
+        'App\\Controllers\\PagesController' => __DIR__ . '/../..' . '/app/controllers/PagesController.php',
+        'App\\Controllers\\UsersController' => __DIR__ . '/../..' . '/app/controllers/UsersController.php',
+        'App\\Core\\App' => __DIR__ . '/../..' . '/core/App.php',
+        'App\\Core\\Request' => __DIR__ . '/../..' . '/core/Request.php',
+        'App\\Core\\Router' => __DIR__ . '/../..' . '/core/Router.php',
+        'App\\models\\Project' => __DIR__ . '/../..' . '/app/models/Project.php',
         'ComposerAutoloaderInite542a95aa8a24be9a24b029ff35992ff' => __DIR__ . '/..' . '/composer/autoload_real.php',
         'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
         'Composer\\Autoload\\ComposerStaticInite542a95aa8a24be9a24b029ff35992ff' => __DIR__ . '/..' . '/composer/autoload_static.php',
         'Connection' => __DIR__ . '/../..' . '/core/database/Connection.php',
-        'PagesController' => __DIR__ . '/../..' . '/controllers/PagesController.php',
         'QueryBuilder' => __DIR__ . '/../..' . '/core/database/QueryBuilder.php',
-        'Request' => __DIR__ . '/../..' . '/core/Request.php',
-        'Router' => __DIR__ . '/../..' . '/core/Router.php',
-        'Task' => __DIR__ . '/../..' . '/views/Task.php',
-        'User' => __DIR__ . '/../..' . '/views/User.php',
-        'UsersController' => __DIR__ . '/../..' . '/controllers/UsersController.php',
-        'name' => __DIR__ . '/../..' . '/controllers/name.php',
+        'Task' => __DIR__ . '/../..' . '/app/views/Task.php',
+        'User' => __DIR__ . '/../..' . '/app/views/User.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

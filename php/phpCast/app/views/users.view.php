@@ -5,13 +5,16 @@
  * Date: 2018/4/15
  * Time: 10:32 PM
  */
+
+use App\Core\App;
+
 $title = 'Homepage';
 
 // Don't need these because composer
 //require 'views/Task.php';
 //require 'views/User.php';
-require 'views/index.function.php';
-require 'views/index.view.header.php';
+require 'app/views/index.function.php';
+require 'app/views/index.view.header.php';
 
 
 echo '<div class="page-header">
@@ -91,4 +94,4 @@ echo "</tr>";
 echo '</tbody>
         </table>';
 
-require 'views/index.view.bottom.php';
+require 'app/views/index.view.bottom.php';

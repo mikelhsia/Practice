@@ -4,6 +4,9 @@
 require 'vendor/autoload.php';
 require 'core/bootstrap.php';
 
+
+use App\Core\{Router, Request};
+
 // var_dump($app);
 
 // $routes = new Router();
@@ -13,5 +16,5 @@ require 'core/bootstrap.php';
 // require $routes->redirect($uri);
 
 // Simplified version
-Router::load('routes.php')
+Router::load('app/routes.php')
 	->redirect(Request::getUri(), Request::getMethod());

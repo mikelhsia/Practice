@@ -6,13 +6,16 @@
  * Date: 2018/4/15
  * Time: 9:30 PM
  */
+
+namespace App\Controllers;
+
 class PagesController
 {
     public function home() {
         // Receive the request
         // Delegate
         // Return a response
-        return views('index');
+        return view('index');
     }
 
     public function about() {
@@ -20,14 +23,14 @@ class PagesController
         $author = "Michael Hsia";
 
 //        return view('about', compact('author'));
-        return views('about', [ 'author' => $author]);
+        return view('about', [ 'author' => $author]);
     }
 
     public function about_culture() {
-        return views('about-culture');
+        return view('about-culture');
     }
 
     public function contact() {
-        return views('contact');
+        return view('contact');
     }
 }

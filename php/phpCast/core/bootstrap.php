@@ -15,6 +15,8 @@ $app['database'] = new QueryBuilder(
 );
 */
 
+use App\Core\App;
+
 /*
  Key name = config
  Find the configuration array, and store it in our container
@@ -27,12 +29,12 @@ App::bind('config', require 'config.php');
 App::bind('database', new QueryBuilder(
     Connection::make(App::get('config')['database'])));
 
-function views($name, $data = []) {
+function view($name, $data = []) {
     // extract:
     // ['author' => 'Michael']
     // then create $author = 'Michael'
     extract($data);
-    return require "views/${name}.view.php";
+    return require "app/views/${name}.view.php";
 }
 
 function redirect($path) {

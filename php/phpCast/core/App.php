@@ -6,6 +6,8 @@
  * Time: 11:55 PM
  */
 
+namespace App\Core;
+
 // Dependency injection container
 class App {
 
