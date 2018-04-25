@@ -146,3 +146,86 @@ console.log(results, count);
 function getData ({results, count}) {
     console.log(results, count);
 }
+
+/************************************************************/
+/* Classes */
+
+// ES 5
+/*
+function User (username, email) {
+    this.username = username;
+    this.email = email;
+
+    // this.changeEmail = function () {  ...  }
+}
+
+User.prototype.changeEmail = function (newEmail) {
+    this.email = newEmail;
+};
+
+var user = new User('JeffreWay', 'support@laracasts.com');
+
+user.changeEmail('foo@example.com');
+
+console.dir(user);
+*/
+
+// ES 6
+class User {
+    // Don't need to assign class variable, but use language similar to backend language
+    constructor(username, email) {
+        this.username = username;
+        this.email = email;
+    }
+
+    static regsiter(...args) {
+        return new User(...args);
+    }
+
+    get foo () {
+        return "foo";
+    }
+
+    set setUsername (username) {
+        this.username = username;
+    }
+
+    changeEmail (newEmail) {
+        this.email = newEmail;
+    }
+}
+
+// let user = new User("JeffreWay", 'support@laracasts.com');
+let user = User.regsiter("JeffreWay", 'support@laracasts.com');
+
+// user.changeEmail("foo@example.com");
+
+console.dir(user);
+console.log(user.foo());
+
+
+function log(strategy) {
+    strategy.handle();
+}
+
+// log(new class {
+//     handle() {
+//         alert('Using the alert strategy to log');
+//     }
+// });
+
+// or
+
+class consoleLogger {
+    handle () {
+        console.log('Using console strategy to log');
+    }
+}
+
+class alertLogger {
+    handle () {
+        alert('Using alert strategy to log');
+    }
+}
+
+log(new consoleLogger);
