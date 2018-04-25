@@ -182,6 +182,8 @@ class User {
         return new User(...args);
     }
 
+    // get and set accessors.
+    // could be used for computed properties
     get foo () {
         return "foo";
     }
@@ -204,6 +206,7 @@ console.dir(user);
 console.log(user.foo());
 
 
+// classes are first class citizens, therefore they can be used as values, practically anywhere
 function log(strategy) {
     strategy.handle();
 }
@@ -229,3 +232,25 @@ class alertLogger {
 }
 
 log(new consoleLogger);
+
+/************************************************************/
+/* ES2015 module: export keyword */
+/* However, current browser doesn't support ES6 out of the box
+ * Therefore you need to introduce a middleman to compile both files into one
+ * */
+
+// 1.
+// import { TasksCollection, exportFoo } from './TaskCollection';
+
+// 2.
+// First is default, second and the rest are not default
+// import TasksCollection, { exportFoo } from './TaskCollection';
+
+// 3.
+// import TasksCollection from './TaskCollection';
+//
+// new TasksCollection([
+//     'Go to the store',
+//     'Finish screencast',
+//     'Eat cake'
+// ]).dump();
