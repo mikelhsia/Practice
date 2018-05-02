@@ -203,7 +203,7 @@ let user = User.regsiter("JeffreWay", 'support@laracasts.com');
 // user.changeEmail("foo@example.com");
 
 console.dir(user);
-console.log(user.foo());
+console.log(user.foo);
 
 
 // classes are first class citizens, therefore they can be used as values, practically anywhere
@@ -247,10 +247,11 @@ log(new consoleLogger);
 // import TasksCollection, { exportFoo } from './TaskCollection';
 
 // 3.
-// import TasksCollection from './TaskCollection';
-//
-// new TasksCollection([
-//     'Go to the store',
-//     'Finish screencast',
-//     'Eat cake'
-// ]).dump();
+import TasksCollection from './TaskCollection';
+
+new TasksCollection([
+    'Go to the store',
+    'Finish screencast',
+    'Eat cake'
+]).dump();
+
