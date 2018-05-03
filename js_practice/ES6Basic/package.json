@@ -1,10 +1,22 @@
 {
-  "devDependencies": {
+  "name": "ES6Basic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "blockBindings.js",
+  "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
-    "rollup": "^0.58.2"
+    "rollup": "^0.58.2",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.1.2"
+  },
+  "devDependencies": {
+    "buble-loader": "^0.5.0"
   },
   "scripts": {
-    "build": "babel src -d output"
-  }
+    "build": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
